@@ -18,6 +18,15 @@ Live Link: [Court Reserve](https://aa-court-reserve.herokuapp.com/)
 
 ## Features
 
+* Users can create, view, update, and delete a particular court location if they are the responsible party for that location.
+* Users can book a location for a particular date and time frame and edit or delete their booking as needed.
+* Users can leave reviews for a location which will be visible to all other users and subsequently update or delete those reviews.
+
+### Bonus Features
+
+* Users can search for locations
+* Users can view Google Maps for locations
+
 ## Technologies
 
 ## Database Structure
