@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import SpotsContainer from "./components/SpotsContainer";
 import HomePageExplore from "./components/HomePageExplore";
 import UserProfile from "./components/UserProfile";
+import ListingForm from "./components/ListingForm/ListingForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,9 +33,9 @@ function App() {
           <Route path="/users/:userId">
             <UserProfile />
           </Route>
-          {/* <Route path="/listing">
-
-          </Route> */}
+          <Route path="/listing">
+            <ListingForm />
+          </Route>
         </Switch>
       )}
     </>

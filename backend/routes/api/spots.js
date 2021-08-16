@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { requireAuth } = require('../../utils/auth');
+const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Spot, Image } = require('../../db/models')
 
 const router = express.Router();
@@ -21,14 +21,14 @@ router.get('/:spotId', asyncHandler(async(req, res) => {
   const spot = await Spot.findOne({
     where: spotId
   })
-
   res.json(spot)
 }))
 
 // POST /api/spots
-// router.post('/', requireAuth, asyncHandler(async(req, res) => {
-
-// }))
+router.post('/', requireAuth, asyncHandler(async(req, res) => {
+  const newCourt = await Spot.create(req.body);
+  return res.redirect(`spots/${newCourt.id}`)
+}))
 
 // PUT /api/spots/:spotId
 

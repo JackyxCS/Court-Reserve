@@ -7,7 +7,7 @@ function UserProfile() {
 
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const userSpots = useSelector(state => (state.userProfile.userSpots))
+  const userSpots = useSelector(state => state.userProfile.userSpots)
   const userBookings = useSelector(state => state.userProfile.userBookings)
   const userReviews = useSelector(state => state.userProfile.userReviews)
 
