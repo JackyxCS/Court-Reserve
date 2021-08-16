@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Booking, Review, Spot } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -43,5 +43,26 @@ router.post(
     });
   }),
 );
+
+// Get information to populate user profile
+router.get('/:userId(\\d+)', asyncHandler((async (req, res) => {
+  const userId = parseInt(req.params.userId, 10)
+
+  const userSpots = await Spot.findAll({
+    where: userId
+  })
+
+  const userBookings = await Booking.findAll({
+    where: userId,
+    include: [Spot]
+  })
+
+  const userReviews = await Review.findAll({
+    where: userId,
+    include: [Spot]
+  })
+
+  res.json({ userSpots, userBookings, userReviews })
+})))
 
 module.exports = router;
