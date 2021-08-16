@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSpots } from '../../store/spots';
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom';
 
 function UserProfile() {
-
+  const history = useHistory();
   const dispatch = useDispatch();
   const { userId } = useParams();
   const spots = useSelector(state => Object.values(state.spots))
@@ -16,6 +16,14 @@ function UserProfile() {
     dispatch(fetchSpots());
   }, [dispatch])
 
+  const updateCourt = (e) => {
+    e.preventDefault();
+  }
+
+  const deleteCourt = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <>
       <div>
@@ -23,9 +31,36 @@ function UserProfile() {
         {userSpots && userSpots.map((spot) =>
           <div key={spot.id}>
             <div>{spot.name}</div>
-            <div>View</div>
-            <div>Update</div>
-            <div>Delete</div>
+            <div>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                history.push(`/spots/${spot.id}`)
+              }}>
+                <button
+                  type="submit"
+                >
+                  View
+                </button>
+              </form>
+            </div>
+            <div>
+              <form onSubmit={updateCourt}>
+                <button
+                  type="submit"
+                >
+                  Update
+                </button>
+              </form>
+            </div>
+            <div>
+              <form onSubmit={deleteCourt}>
+                <button
+                  type="submit"
+                >
+                  Delete
+                </button>
+              </form>
+            </div>
           </div>
         )}
       </div>

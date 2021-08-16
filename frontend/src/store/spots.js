@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 // Define Action Types as Constants
 const SET_SPOTS = 'spots/setSpots'
 const ADD_SPOT = 'spots/addSpot'
+const UPDATE_SPOT = 'spots/updateSpot'
 
 // Define Action Creators
 const setSpots = (spots) => ({
@@ -15,12 +16,31 @@ const addSpot = (listing) => ({
   listing
 })
 
+const updateSpot = (spot) => ({
+  type: UPDATE_SPOT,
+  spot
+})
+
 // Define Thunks
 export const fetchSpots = () => async (dispatch) => {
   const res = await fetch('/api/spots');
   const spots = await res.json();
   dispatch(setSpots(spots))
 };
+
+export const createUpdate = (data) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${data.id}`, {
+    method: 'PUT',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+
+  if (res.ok) {
+    const updatedSpot = await res.json()
+    dispatch(updateSpot(updatedSpot))
+    return updatedSpot
+  }
+}
 
 export const postSpot = (court) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots`, {
@@ -51,6 +71,11 @@ const spotsReducer = (state = initialState, action) => {
     case ADD_SPOT: {
       const newState = { ...state }
       newState[action.listing.id] = action.listing
+      return newState
+    }
+    case UPDATE_SPOT: {
+      const newState = { ...state }
+      newState[action.spot.id] = action.spot
       return newState
     }
     default:
