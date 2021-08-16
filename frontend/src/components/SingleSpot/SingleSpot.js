@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 // import the thunk creator
-import { fetchSpot } from '../../store/spots';
+import { fetchSpots } from '../../store/spots';
 
 // import styles from './SingleSpot.module.css'
 
@@ -12,16 +12,17 @@ const SingleSpot = () => {
   // declare variables from hooks
   const dispatch = useDispatch();
   const { spotId } = useParams();
-  const spot = useSelector(state => state.spots[spotId])
+  const spots = useSelector(state => Object.values(state.spots))
+  const singleSpot = spots.filter(spot => Number(spot.id) === Number(spotId))
 
   // use a 'react' hook and cause a side effect
   useEffect(() => {
-    dispatch(fetchSpot(spotId));
-  }, [dispatch, spotId]);
+    dispatch(fetchSpots());
+  }, [dispatch]);
 
   return (
     <div>
-      {spot.name}
+      {singleSpot[0].name}
     </div>
   )
 }

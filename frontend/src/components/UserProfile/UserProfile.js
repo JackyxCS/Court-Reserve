@@ -1,26 +1,27 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserSpots } from '../../store/spots';
-// import { fetchSpots } from '../../store/spots';
+import { fetchSpots } from '../../store/spots';
 import { useParams } from 'react-router-dom'
 
 function UserProfile() {
 
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const userSpots = useSelector(state => state.userSpots)
+  const spots = useSelector(state => Object.values(state.spots))
+  const userSpots = spots.filter(spot => Number(spot.userId) === Number(userId))
   // const userBookings = useSelector(state => state.userProfile.userBookings)
   // const userReviews = useSelector(state => state.userProfile.userReviews)
 
   useEffect(() => {
-    dispatch(fetchUserSpots(userId));
-  }, [dispatch, userId])
+    dispatch(fetchSpots());
+  }, [dispatch])
 
   return (
     <>
       <div>
-        {userSpots && Object.values(userSpots).map((spot) =>
-          <div key={spot.id}> My Listings
+        <div>My Listings</div>
+        {userSpots && userSpots.map((spot) =>
+          <div key={spot.id}>
             <div>{spot.name}</div>
             <div>View</div>
             <div>Update</div>

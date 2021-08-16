@@ -20,9 +20,9 @@ const SpotsContainer = () => {
 
   return (
     <div>
-      {spots.map((spot) =>
+      {!!spots.length && spots.map((spot) =>
         <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-          <div><img src={spot.Images[0].url} alt='' />{spot.name}</div>
+          <div><img src={spot?.Images[0].url} alt='' />{spot?.name}</div>
         </NavLink>
       )}
     </div>

@@ -7,8 +7,8 @@ import Navigation from "./components/Navigation";
 import SpotsContainer from "./components/SpotsContainer";
 import HomePageExplore from "./components/HomePageExplore";
 import UserProfile from "./components/UserProfile";
-import ListingForm from "./components/ListingForm/ListingForm";
-import SingleSpot from "./components/SingleSpot/SingleSpot";
+import ListingForm from "./components/ListingForm";
+import SingleSpot from "./components/SingleSpot";
 
 function App() {
   const dispatch = useDispatch();
