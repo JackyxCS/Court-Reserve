@@ -52,17 +52,17 @@ router.get('/:userId(\\d+)', asyncHandler((async (req, res) => {
     where: userId
   })
 
-  const userBookings = await Booking.findAll({
-    where: userId,
-    include: [Spot]
-  })
+  // const userBookings = await Booking.findAll({
+  //   where: userId,
+  //   include: [Spot]
+  // })
 
-  const userReviews = await Review.findAll({
-    where: userId,
-    include: [Spot]
-  })
+  // const userReviews = await Review.findAll({
+  //   where: userId,
+  //   include: [Spot]
+  // })
 
-  res.json({ userSpots, userBookings, userReviews })
+  res.json(userSpots)
 })))
 
 module.exports = router;

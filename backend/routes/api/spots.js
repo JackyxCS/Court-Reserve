@@ -11,22 +11,26 @@ router.get(
   '/',
   asyncHandler(async (req, res) => {
     const spots = await Spot.findAll({ include: Image });
-    res.json(spots);
+    return res.json(spots);
   })
 );
 
 // GET /api/spots/:spotId
-router.get('/:spotId', asyncHandler(async(req, res) => {
+router.get('/:spotId', asyncHandler(async (req, res) => {
   const spotId = parseInt(req.params.spotId, 10)
   const spot = await Spot.findOne({
     where: spotId
   })
-  res.json(spot)
+  return res.json(spot)
 }))
 
 // POST /api/spots
-router.post('/', requireAuth, asyncHandler(async(req, res) => {
-  const newCourt = await Spot.create(req.body);
+router.post('/', requireAuth, asyncHandler(async (req, res) => {
+  const { name, address, city, state, country, price, imageURL: url } = req.body
+  const { id: userId } = req.user
+  const newCourt = await Spot.create({ userId, name, address, city, state, country, price });
+  const { id: spotId } = newCourt
+  await Image.create({ spotId, url })
   return res.redirect(`spots/${newCourt.id}`)
 }))
 

@@ -1,18 +1,19 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProfile } from '../../store/profile';
+import { fetchUserSpots } from '../../store/spots';
+// import { fetchSpots } from '../../store/spots';
 import { useParams } from 'react-router-dom'
 
 function UserProfile() {
 
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const userSpots = useSelector(state => state.userProfile.userSpots)
-  const userBookings = useSelector(state => state.userProfile.userBookings)
-  const userReviews = useSelector(state => state.userProfile.userReviews)
+  const userSpots = useSelector(state => state.userSpots)
+  // const userBookings = useSelector(state => state.userProfile.userBookings)
+  // const userReviews = useSelector(state => state.userProfile.userReviews)
 
   useEffect(() => {
-    dispatch(fetchProfile(userId));
+    dispatch(fetchUserSpots(userId));
   }, [dispatch, userId])
 
   return (
@@ -27,7 +28,7 @@ function UserProfile() {
           </div>
         )}
       </div>
-      <div>
+      {/* <div>
         {userBookings && Object.values(userBookings).map((booking) =>
           <div key={booking.id}> My Bookings
             <div>{booking.Spot.name}</div>
@@ -47,7 +48,7 @@ function UserProfile() {
             <div>Delete</div>
           </div>
         )}
-      </div>
+      </div> */}
     </>
   )
 }

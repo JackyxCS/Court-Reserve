@@ -4,18 +4,21 @@ import { useHistory } from 'react-router-dom'
 // import styles from './ListingForm.module.css'
 import { states } from '../../geographyData/geographyData'
 import { countries } from '../../geographyData/geographyData'
+import { useDispatch } from 'react-redux';
+import { postSpot } from '../../store/spots';
 
 const ListingForm = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
-  const [state, setState] = useState('');
+  const [state, setState] = useState('Alabama');
   const [country, setCountry] = useState('US');
   // const [lat, setLat] = useState();
   // const [lng, setLng] = useState();
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
-  const [file, setFile] = useState('')
+  const [imageURL, setImageURL] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
 
   useEffect(() => {
@@ -23,27 +26,28 @@ const ListingForm = () => {
     if (name.length === 0) errors.push("Name field is required")
     if (address.length === 0) errors.push("Address field is required")
     if (city.length === 0) errors.push("City field is required")
-    if (state.length === 0) errors.push("State field is required")
+    if (!state) errors.push("State field is required")
     if (price === 0) errors.push("Price field is required")
+    if (!imageURL) errors.push("Image field is required")
     setValidationErrors(errors)
-  }, [name, address, city, state, price]);
+  }, [name, address, city, state, price, imageURL]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const courtSubmission = {
+    const court = {
       name,
       address,
       city,
       state,
       country,
-      price
+      price,
+      imageURL
     }
 
-    const res = fetch(`/api/spots`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(courtSubmission)
-    })
+    let spot = await dispatch(postSpot(court))
+    if (spot) {
+      history.push(`/spots/${spot.id}`)
+    }
   }
 
   return (
@@ -121,12 +125,12 @@ const ListingForm = () => {
         />
       </label>
       <label>
-        Upload Image
+        Image URL
         <input
-          type="file"
+          type="url"
           name="picture"
-          value={file}
-          onChange={(e) => setFile(e.target.file)}
+          value={imageURL}
+          onChange={(e) => setImageURL(e.target.value)}
         />
       </label>
       <button

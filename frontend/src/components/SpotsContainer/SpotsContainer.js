@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 // import hooks from 'react-redux
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 // import the thunk creator
 import { fetchSpots } from '../../store/spots';
 
@@ -20,7 +21,9 @@ const SpotsContainer = () => {
   return (
     <div>
       {spots.map((spot) =>
-        <div key={spot.id}><img src={spot.Images[0].url} alt='' />{spot.name}</div>
+        <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+          <div><img src={spot.Images[0].url} alt='' />{spot.name}</div>
+        </NavLink>
       )}
     </div>
   )

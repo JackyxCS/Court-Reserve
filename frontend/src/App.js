@@ -8,6 +8,7 @@ import SpotsContainer from "./components/SpotsContainer";
 import HomePageExplore from "./components/HomePageExplore";
 import UserProfile from "./components/UserProfile";
 import ListingForm from "./components/ListingForm/ListingForm";
+import SingleSpot from "./components/SingleSpot/SingleSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,8 +28,11 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/spots">
+          <Route exact path="/spots">
             <SpotsContainer />
+          </Route>
+          <Route path="/spots/:spotId">
+            <SingleSpot />
           </Route>
           <Route path="/users/:userId">
             <UserProfile />
