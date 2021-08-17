@@ -12,8 +12,8 @@ const ListingForm = () => {
   const history = useHistory();
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
-  const [state, setState] = useState('Alabama');
-  const [country, setCountry] = useState('US');
+  const [state, setState] = useState(states[0]);
+  const [country, setCountry] = useState(countries[0]);
   // const [lat, setLat] = useState();
   // const [lng, setLng] = useState();
   const [name, setName] = useState('');

@@ -9,7 +9,7 @@ import HomePageExplore from "./components/HomePageExplore";
 import UserProfile from "./components/UserProfile";
 import ListingForm from "./components/ListingForm";
 import SingleSpot from "./components/SingleSpot";
-import UpdateSpotForm from "./components/UpdateSpotForm/UpdateSpotForm";
+import UpdateSpotForm from "./components/UpdateSpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,16 +26,16 @@ function App() {
           <Route exact path="/">
             <HomePageExplore />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
           <Route exact path="/spots">
             <SpotsContainer />
           </Route>
-          <Route path="/spots/:spotId">
+          <Route exact path="/spots/:spotId">
             <SingleSpot />
           </Route>
-          <Route path="spots/:spotId/edit">
+          <Route exact path="/spots/:spotId/edit">
             <UpdateSpotForm />
           </Route>
           <Route path="/users/:userId">
