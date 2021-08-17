@@ -10,12 +10,14 @@ import UserProfile from "./components/UserProfile";
 import ListingForm from "./components/ListingForm";
 import SingleSpot from "./components/SingleSpot";
 import UpdateSpotForm from "./components/UpdateSpotForm";
+// import { fetchSpots } from "./store/spots";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    // dispatch(fetchSpots())
   }, [dispatch]);
 
   return (

@@ -23,11 +23,6 @@ function UserProfile() {
     setShowModal(true)
   }
 
-  // const handleUpdate = (e) => {
-  //   e.preventDefault();
-  //   history.push(`/spots/${spot.id}/edit`)
-  // }
-
   return (
     <>
       <div>
@@ -48,23 +43,19 @@ function UserProfile() {
               </form>
             </div>
             <div>
-              {/* <form onSubmit={handleUpdate}> */}
-                <button
+              <button
                 onClick={(e) => history.push(`/spots/${spot.id}/edit`)}
-                >
-                  Update
-                </button>
-              {/* </form> */}
+              >
+                Update
+              </button>
             </div>
             <div>
-              {/* <form onSubmit={deleteCourt}> */}
               <button
                 onClick={handleClick}
               >
                 Delete
               </button>
               {showModal && <DeleteModal showModal={showModal} setShowModal={setShowModal} spotId={spot.id} userId={userId} />}
-              {/* </form> */}
             </div>
           </div>
         )}

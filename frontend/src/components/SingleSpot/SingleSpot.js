@@ -22,7 +22,7 @@ const SingleSpot = () => {
 
   return (
     <div>
-      {singleSpot[0].name}
+      {singleSpot[0] && singleSpot[0].name}
     </div>
   )
 }

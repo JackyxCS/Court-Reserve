@@ -66,4 +66,5 @@ router.get('/:userId(\\d+)', asyncHandler((async (req, res) => {
   res.json(userSpots)
 })))
 
+
 module.exports = router;

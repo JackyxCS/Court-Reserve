@@ -34,11 +34,11 @@ export const fetchSpots = () => async (dispatch) => {
   dispatch(setSpots(spots))
 };
 
-export const createUpdate = (data) => async (dispatch) => {
-  const res = await csrfFetch(`/api/spots/${data.id}`, {
+export const createUpdate = (court) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${court.id}`, {
     method: 'PUT',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(data)
+    // headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(court)
   });
 
   if (res.ok) {
@@ -51,7 +51,7 @@ export const createUpdate = (data) => async (dispatch) => {
 export const postSpot = (court) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    // headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(court)
   })
 

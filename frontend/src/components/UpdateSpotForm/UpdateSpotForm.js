@@ -15,7 +15,11 @@ const UpdateSpotForm = () => {
 
   console.log(spot)
 
-  const [address, setAddress] = useState(spot.address);
+  useEffect(() => {
+    dispatch(fetchSpots())
+  }, [dispatch])
+
+  const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState(states[0]);
   const [country, setCountry] = useState(countries[0]);
@@ -27,14 +31,21 @@ const UpdateSpotForm = () => {
   const [validationErrors, setValidationErrors] = useState([])
 
   useEffect(() => {
-    dispatch(fetchSpots())
-  }, [dispatch])
+    setAddress(spot ? spot.address : '');
+    setCity(spot ? spot.city : '');
+    setState(spot ? spot.state : '');
+    setCountry(spot ? spot.country : '');
+    setName(spot ? spot.name : '');
+    setPrice(spot ? spot.price : '');
+    setImageURL(spot ? spot.Images[0].url : '');
+  }, [spot])
+
 
   useEffect(() => {
     const errors = [];
-    if (name.length === 0) errors.push("Name field is required")
-    if (address.length === 0) errors.push("Address field is required")
-    if (city.length === 0) errors.push("City field is required")
+    if (name?.length === 0) errors.push("Name field is required")
+    if (address?.length === 0) errors.push("Address field is required")
+    if (city?.length === 0) errors.push("City field is required")
     if (!state) errors.push("State field is required")
     if (price === 0) errors.push("Price field is required")
     if (!imageURL) errors.push("Image field is required")
@@ -44,6 +55,7 @@ const UpdateSpotForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const court = {
+      id: spotId,
       name,
       address,
       city,
@@ -54,6 +66,7 @@ const UpdateSpotForm = () => {
     }
 
     let spot = await dispatch(createUpdate(court))
+    console.log(spot)
     if (spot) {
       history.push(`/spots/${spot.id}`)
     }
