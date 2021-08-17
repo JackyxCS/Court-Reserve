@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSpots } from '../../store/spots';
 import { useParams, useHistory } from 'react-router-dom';
+import DeleteModal from '../DeleteModal';
 
 function UserProfile() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { userId } = useParams();
+  const [showModal, setShowModal] = useState(false)
   const spots = useSelector(state => Object.values(state.spots))
   const userSpots = spots.filter(spot => Number(spot.userId) === Number(userId))
   // const userBookings = useSelector(state => state.userProfile.userBookings)
@@ -16,12 +18,9 @@ function UserProfile() {
     dispatch(fetchSpots());
   }, [dispatch])
 
-  const updateCourt = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-  }
-
-  const deleteCourt = (e) => {
-    e.preventDefault();
+    setShowModal(true)
   }
 
   return (
@@ -44,7 +43,10 @@ function UserProfile() {
               </form>
             </div>
             <div>
-              <form onSubmit={updateCourt}>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                history.push(`/spots/${spot.id}/edit`)
+              }}>
                 <button
                   type="submit"
                 >
@@ -53,13 +55,14 @@ function UserProfile() {
               </form>
             </div>
             <div>
-              <form onSubmit={deleteCourt}>
-                <button
-                  type="submit"
-                >
-                  Delete
-                </button>
-              </form>
+              {/* <form onSubmit={deleteCourt}> */}
+              <button
+                onClick={handleClick}
+              >
+                Delete
+              </button>
+              {showModal && <DeleteModal showModal={showModal} setShowModal={setShowModal} spotId={spot.id} userId={userId}/>}
+              {/* </form> */}
             </div>
           </div>
         )}

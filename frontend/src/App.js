@@ -9,6 +9,7 @@ import HomePageExplore from "./components/HomePageExplore";
 import UserProfile from "./components/UserProfile";
 import ListingForm from "./components/ListingForm";
 import SingleSpot from "./components/SingleSpot";
+import UpdateSpotForm from "./components/UpdateSpotForm/UpdateSpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/spots/:spotId">
             <SingleSpot />
+          </Route>
+          <Route path="spots/:spotId/edit">
+            <UpdateSpotForm />
           </Route>
           <Route path="/users/:userId">
             <UserProfile />
