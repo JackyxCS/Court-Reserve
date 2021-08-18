@@ -25,11 +25,9 @@ const SearchBar = () => {
       return;
     }
 
-    // console.log(payload.search)
-
-    let foundCourts = await dispatch(searchSpots(payload))
+    let foundCourts = await dispatch(searchSpots(search))
     if (foundCourts.length > 0) {
-      history.push(`/spots/search`)
+      history.push({ pathname: `/spots/search`, state: { search: payload.search } })
     } else {
       alert('No locations found')
     }

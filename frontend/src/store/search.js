@@ -13,7 +13,7 @@ const setSearch = (search) => ({
 export const searchSpots = (searchInput) => async (dispatch) => {
   const res = await csrfFetch('/api/spots/search', {
     method: 'POST',
-    body: JSON.stringify(searchInput)
+    body: JSON.stringify({ searchInput })
   });
 
   if (res.ok) {

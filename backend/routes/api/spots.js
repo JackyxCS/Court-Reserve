@@ -34,7 +34,8 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
 
 // POST /api/spots/search
 router.post('/search', asyncHandler(async (req, res) => {
-  const { search } = req.body
+  const { searchInput: search } = req.body
+  console.log(req.body)
   const foundCourts = await Spot.findAll({ where: { city: search }, include: Image })
   return res.json(foundCourts)
 }))

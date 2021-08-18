@@ -35,7 +35,7 @@ function Navigation({ isLoaded }) {
         {isLoaded && sessionLinks}
       </div>
       <div>
-        <SearchBar />Search:
+        <SearchBar />
       </div>
     </>
   );

@@ -12,10 +12,12 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('Reviews', [
-      { userId: 1, spotId: 1, review: 'These courts are well maintained!', rating: 5 },
-      { userId: 1, spotId: 2, review: 'Nice courts but pretty busy most nights', rating: 4 },
-      { userId: 3, spotId: 3, review: 'Lots of courts but large cracks in most of them', rating: 3 },
+    return queryInterface.bulkInsert('Reviews', [{ userId: 1, spotId: 1, review: 'These courts are well maintained!', rating: 5 },
+    { userId: 1, spotId: 2, review: 'Nice courts but pretty busy most nights', rating: 4 },
+    { userId: 2, spotId: 2, review: 'The staff was rude!', rating: 2 },
+    { userId: 3, spotId: 1, review: 'Lots of courts but large cracks in most of them', rating: 3 },
+    { userId: 3, spotId: 2, review: 'Lots of courts but large cracks in most of them', rating: 3 },
+    { userId: 3, spotId: 3, review: 'Lots of courts but large cracks in most of them', rating: 3 },
     ])
   },
 
