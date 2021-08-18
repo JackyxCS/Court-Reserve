@@ -5,6 +5,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import DeleteListingModal from '../DeleteListingModal';
 import DeleteBookingModal from '../DeleteBookingModal';
 import { fetchBookings } from '../../store/bookings';
+import { fetchReviews } from '../../store/reviews';
 
 function UserProfile() {
   const history = useHistory();
@@ -15,11 +16,13 @@ function UserProfile() {
   const userSpots = spots.filter(spot => Number(spot.userId) === Number(userId))
   const bookings = useSelector(state => Object.values(state.bookings))
   const userBookings = bookings.filter(booking => Number(booking.userId) === Number(userId))
-  // const userReviews = useSelector(state => state.userProfile.userReviews)
+  const reviews = useSelector(state => Object.values(state.reviews))
+  const userReviews = reviews.filter(review => Number(review.userId) === Number(userId))
 
   useEffect(() => {
     dispatch(fetchSpots());
     dispatch(fetchBookings());
+    dispatch(fetchReviews());
   }, [dispatch])
 
   const handleClick = (e) => {
@@ -85,7 +88,7 @@ function UserProfile() {
             </div>
             <div>
               <button
-                onClick={(e) => history.push(`/bookings/${booking.id}/edit`)}
+                onClick={() => history.push(`/bookings/${booking.id}/edit`)}
               >
                 Update
               </button>
@@ -101,17 +104,24 @@ function UserProfile() {
           </div>
         )}
       </div>
-      {/* <div>
+      <div>
+        <div>My Reviews</div>
         {userReviews && Object.values(userReviews).map((review) =>
-          <div key={review.id}> My Reviews
+          <div key={review.id}>
+            <div>{review.rating}</div>
             <div>{review.review}</div>
             <div>{review.Spot.name}</div>
-            <div>View</div>
-            <div>Update</div>
+            <div>
+              <button
+                onClick={() => history.push(`/spots/${review.Spot.id}`)}
+              >
+                View
+              </button>
+            </div>
             <div>Delete</div>
           </div>
         )}
-      </div> */}
+      </div>
     </>
   )
 }

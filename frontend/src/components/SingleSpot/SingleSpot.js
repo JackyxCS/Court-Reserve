@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 // import the thunk creator
 import { fetchSpots } from '../../store/spots';
-import BookingForm from '../BookingForm'
+import BookingForm from '../BookingForm';
+import SpotReviews from '../SpotReviews';
+import ReviewForm from '../ReviewForm';
 
 // import styles from './SingleSpot.module.css'
 
@@ -25,6 +27,8 @@ const SingleSpot = () => {
     <div>
       {singleSpot[0] && singleSpot[0].name}
       <BookingForm />
+      <SpotReviews spotId={spotId} />
+      <ReviewForm />
     </div>
   )
 }
