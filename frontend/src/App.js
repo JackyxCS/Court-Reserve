@@ -12,7 +12,7 @@ import SingleSpot from "./components/SingleSpot";
 import UpdateSpotForm from "./components/UpdateSpotForm";
 import UpdateBookingForm from "./components/UpdateBookingForm";
 import SearchContainer from "./components/SearchContainer";
-// import { useLocation } from "react-router-dom";
+// import MapContainer from "./components/MapContainer/MapContainer";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      {/* <MapContainer /> */}
       {isLoaded && (
         <Switch>
           <Route exact path="/">

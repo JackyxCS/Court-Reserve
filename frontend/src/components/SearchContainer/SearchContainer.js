@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 // import the thunk creator
 import { searchSpots } from '../../store/search';
 import { useLocation } from 'react-router';
+import MapContainer from '../MapContainer';
 
 // import styles from './SpotsContainer.module.css'
 
@@ -22,11 +23,16 @@ const SearchContainer = () => {
 
   return (
     <div>
-      {!!spots.length && spots.map((spot) =>
-        <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-          <div><img src={spot?.Images[0].url} alt='' />{spot?.name}</div>
-        </NavLink>
-      )}
+      <div>
+        {!!spots.length && spots.map((spot) =>
+          <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+            <div><img src={spot?.Images[0].url} alt='' />{spot?.name}</div>
+          </NavLink>
+        )}
+      </div>
+      <div>
+        <MapContainer />
+      </div>
     </div>
   )
 }
