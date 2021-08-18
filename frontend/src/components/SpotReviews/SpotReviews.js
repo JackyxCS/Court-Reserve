@@ -17,9 +17,10 @@ const SpotReviews = ({ spotId }) => {
   return (
     <div> Reviews
       {!!spotReviews.length && spotReviews.map((review) =>
-        <div key={review.id}>
-          <p>Rating: {review.rating}</p>
-          <p>Review: {review.review}</p>
+        <div key={review?.id}>
+          <p>Rating: {review?.rating}</p>
+          <p>Review: {review?.review}</p>
+          <p>{review?.User?.username}</p>
         </div>
       )}
     </div>

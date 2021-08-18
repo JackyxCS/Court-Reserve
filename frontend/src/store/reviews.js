@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf";
 // Define Action Types as Constants
 const SET_REVIEWS = 'reviews/setReviews'
 const ADD_REVIEW = 'reviews/addReview'
-// const REMOVE_REVIEW = 'reviews/removeReview'
+const REMOVE_REVIEW = 'reviews/removeReview'
 
 // Define Action Creators
 const setReviews = (reviews) => ({
@@ -14,6 +14,11 @@ const setReviews = (reviews) => ({
 const addReview = (review) => ({
   type: ADD_REVIEW,
   review
+})
+
+const removeReview = (reviewId) => ({
+  type: REMOVE_REVIEW,
+  reviewId
 })
 
 // Define Thunks
@@ -36,6 +41,16 @@ export const postReview = (review) => async (dispatch) => {
   }
 }
 
+export const deleteReview = (reviewId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: 'DELETE'
+  })
+
+  if (res.ok) {
+    dispatch(removeReview(reviewId))
+  }
+}
+
 // Define an initial state
 const initialState = {};
 
@@ -51,8 +66,13 @@ const reviewsReducer = (state = initialState, action) => {
       return newState
     }
     case ADD_REVIEW: {
-      const newState = {...state}
+      const newState = { ...state }
       newState[action.review.id] = action.review
+      return newState
+    }
+    case REMOVE_REVIEW: {
+      const newState = { ...state }
+      delete newState[action.reviewId]
       return newState
     }
     default:

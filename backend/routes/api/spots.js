@@ -32,6 +32,9 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
   return res.json(newCourt)
 }))
 
+// POST /api/spots/search
+
+
 // PUT /api/spots/:spotId
 router.put('/:spotId', requireAuth, asyncHandler(async (req, res) => {
   const { name, address, city, state, country, price, imageURL: url } = req.body

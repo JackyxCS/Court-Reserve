@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSpots } from '../../store/spots';
-import { useParams, useHistory } from 'react-router-dom';
-import DeleteListingModal from '../DeleteListingModal';
-import DeleteBookingModal from '../DeleteBookingModal';
 import { fetchBookings } from '../../store/bookings';
 import { fetchReviews } from '../../store/reviews';
+import { useParams, useHistory } from 'react-router-dom';
+import DeleteListingModal from '../DeleteListingModal/index';
+import DeleteBookingModal from '../DeleteBookingModal/index';
+import DeleteReviewModal from '../DeleteReviewModal/index';
 
 function UserProfile() {
   const history = useHistory();
@@ -51,7 +52,7 @@ function UserProfile() {
             </div>
             <div>
               <button
-                onClick={(e) => history.push(`/spots/${spot.id}/edit`)}
+                onClick={() => history.push(`/spots/${spot.id}/edit`)}
               >
                 Update
               </button>
@@ -69,7 +70,7 @@ function UserProfile() {
       </div>
       <div>
         <div>My Bookings</div>
-        {userBookings && Object.values(userBookings).map((booking) =>
+        {userBookings && userBookings.map((booking) =>
           <div key={booking?.id}>
             <div>{booking?.Spot?.name}</div>
             <div>{booking?.date}</div>
@@ -106,11 +107,11 @@ function UserProfile() {
       </div>
       <div>
         <div>My Reviews</div>
-        {userReviews && Object.values(userReviews).map((review) =>
-          <div key={review.id}>
-            <div>{review.rating}</div>
-            <div>{review.review}</div>
-            <div>{review.Spot.name}</div>
+        {userReviews && userReviews.map((review) =>
+          <div key={review?.id}>
+            <div>{review?.rating}</div>
+            <div>{review?.review}</div>
+            <div>{review?.Spot?.name}</div>
             <div>
               <button
                 onClick={() => history.push(`/spots/${review.Spot.id}`)}
@@ -118,7 +119,14 @@ function UserProfile() {
                 View
               </button>
             </div>
-            <div>Delete</div>
+            <div>
+              <button
+                onClick={handleClick}
+              >
+                Delete
+              </button>
+              {showModal && <DeleteReviewModal showModal={showModal} setShowModal={setShowModal} userId={userId} reviewId={review.id}/>}
+            </div>
           </div>
         )}
       </div>
