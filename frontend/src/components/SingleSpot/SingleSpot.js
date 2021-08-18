@@ -16,6 +16,7 @@ const SingleSpot = () => {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const spots = useSelector(state => Object.values(state.spots))
+  const sessionUser = useSelector(state => state.session.user);
   const singleSpot = spots.filter(spot => Number(spot.id) === Number(spotId))
 
   // use a 'react' hook and cause a side effect
@@ -28,7 +29,7 @@ const SingleSpot = () => {
       {singleSpot[0] && singleSpot[0].name}
       <BookingForm />
       <SpotReviews spotId={spotId} />
-      <ReviewForm />
+      {sessionUser ? <ReviewForm /> : ''}
     </div>
   )
 }

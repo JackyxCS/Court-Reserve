@@ -12,7 +12,9 @@ function UserProfile() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const [showModal, setShowModal] = useState(false)
+  const [showListingModal, setShowListingModal] = useState(false)
+  const [showBookingModal, setShowBookingModal] = useState(false)
+  const [showReviewModal, setShowReviewModal] = useState(false)
   const spots = useSelector(state => Object.values(state.spots))
   const userSpots = spots.filter(spot => Number(spot.userId) === Number(userId))
   const bookings = useSelector(state => Object.values(state.bookings))
@@ -26,9 +28,19 @@ function UserProfile() {
     dispatch(fetchReviews());
   }, [dispatch])
 
-  const handleClick = (e) => {
+  const handleListingClick = (e) => {
     e.preventDefault();
-    setShowModal(true)
+    setShowListingModal(true)
+  }
+
+  const handleBookingClick = (e) => {
+    e.preventDefault();
+    setShowBookingModal(true)
+  }
+
+  const handleReviewClick = (e) => {
+    e.preventDefault();
+    setShowReviewModal(true)
   }
 
   return (
@@ -59,11 +71,11 @@ function UserProfile() {
             </div>
             <div>
               <button
-                onClick={handleClick}
+                onClick={handleListingClick}
               >
                 Delete
               </button>
-              {showModal && <DeleteListingModal showModal={showModal} setShowModal={setShowModal} spotId={spot.id} userId={userId} />}
+              {showListingModal && <DeleteListingModal showListingModal={showListingModal} setShowListingModal={setShowListingModal} spotId={spot.id} userId={userId} />}
             </div>
           </div>
         )}
@@ -96,11 +108,11 @@ function UserProfile() {
             </div>
             <div>
               <button
-                onClick={handleClick}
+                onClick={handleBookingClick}
               >
                 Delete
               </button>
-              {showModal && <DeleteBookingModal showModal={showModal} setShowModal={setShowModal} userId={userId} bookingId={booking.id} />}
+              {showBookingModal && <DeleteBookingModal showBookingModal={showBookingModal} setShowBookingModal={setShowBookingModal} userId={userId} bookingId={booking.id} />}
             </div>
           </div>
         )}
@@ -121,11 +133,11 @@ function UserProfile() {
             </div>
             <div>
               <button
-                onClick={handleClick}
+                onClick={handleReviewClick}
               >
                 Delete
               </button>
-              {showModal && <DeleteReviewModal showModal={showModal} setShowModal={setShowModal} userId={userId} reviewId={review.id}/>}
+              {showReviewModal && <DeleteReviewModal showReviewModal={showReviewModal} setShowReviewModal={setShowReviewModal} userId={userId} reviewId={review.id}/>}
             </div>
           </div>
         )}

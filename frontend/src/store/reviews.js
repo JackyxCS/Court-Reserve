@@ -80,7 +80,5 @@ const reviewsReducer = (state = initialState, action) => {
   }
 }
 
-
-
 // Export the reducer
 export default reviewsReducer;

@@ -4,26 +4,26 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { deleteReview } from '../../store/reviews'
 
-function DeleteReviewModal({ showModal, setShowModal, userId, reviewId }) {
+function DeleteReviewModal({ showReviewModal, setShowReviewModal, userId, reviewId }) {
   const dispatch = useDispatch()
   const history = useHistory()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowModal(false)
+    setShowReviewModal(false)
     await dispatch(deleteReview(reviewId))
     history.push(`/users/${userId}`)
   }
 
   return (
     <>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+      {showReviewModal && (
+        <Modal onClose={() => setShowReviewModal(false)}>
           <h2>Are you sure?</h2>
           <form onSubmit={handleSubmit}>
             <button type="submit">Confirm</button>
           </form>
-          <button onClick={() => setShowModal(false)}>Cancel</button>
+          <button onClick={() => setShowReviewModal(false)}>Cancel</button>
         </Modal>
       )}
     </>

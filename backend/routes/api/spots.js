@@ -16,7 +16,7 @@ router.get(
 );
 
 // GET /api/spots/:spotId
-router.get('/:spotId', asyncHandler(async (req, res) => {
+router.get('/:spotId(\\d+)', asyncHandler(async (req, res) => {
   const spotId = parseInt(req.params.spotId, 10)
   const spot = await Spot.findOne({ where: { id: spotId }, include: Image })
   return res.json(spot)
@@ -33,10 +33,14 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
 }))
 
 // POST /api/spots/search
-
+router.post('/search', asyncHandler(async (req, res) => {
+  const { search } = req.body
+  const foundCourts = await Spot.findAll({ where: { city: search }, include: Image })
+  return res.json(foundCourts)
+}))
 
 // PUT /api/spots/:spotId
-router.put('/:spotId', requireAuth, asyncHandler(async (req, res) => {
+router.put('/:spotId(\\d+)', requireAuth, asyncHandler(async (req, res) => {
   const { name, address, city, state, country, price, imageURL: url } = req.body
   const spotId = parseInt(req.params.spotId, 10)
   const court = await Spot.findOne({ where: { id: spotId } })
@@ -48,7 +52,7 @@ router.put('/:spotId', requireAuth, asyncHandler(async (req, res) => {
 }))
 
 // DELETE /api/spots/:spotId
-router.delete('/:spotId', requireAuth, asyncHandler(async (req, res) => {
+router.delete('/:spotId(\\d+)', requireAuth, asyncHandler(async (req, res) => {
   const spotId = parseInt(req.params.spotId, 10)
   // const { id: userId } = req.user
   const spot = await Spot.findOne({ where: { id: spotId } })

@@ -11,6 +11,8 @@ import ListingForm from "./components/ListingForm";
 import SingleSpot from "./components/SingleSpot";
 import UpdateSpotForm from "./components/UpdateSpotForm";
 import UpdateBookingForm from "./components/UpdateBookingForm";
+import SearchContainer from "./components/SearchContainer";
+// import { useLocation } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +34,9 @@ function App() {
           </Route>
           <Route exact path="/spots">
             <SpotsContainer />
+          </Route>
+          <Route exact path="/spots/search">
+            <SearchContainer />
           </Route>
           <Route exact path="/spots/:spotId">
             <SingleSpot />

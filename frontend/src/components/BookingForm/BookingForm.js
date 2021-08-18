@@ -12,8 +12,9 @@ import "react-datepicker/dist/react-datepicker.css";
 const BookingForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const sessionUser = useSelector(state => state.session.user);
-  const { id: userId } = sessionUser
+  const sessionUser = useSelector(state => state?.session?.user);
+  let userId;
+  // const { id: userId } = sessionUser
   const { spotId } = useParams();
 
   const [date, setDate] = useState(moment().add(1, 'days')._d)
@@ -31,6 +32,18 @@ const BookingForm = () => {
     }
   }
 
+  // const checkUserId = () => {
+  //   if (sessionUser) {
+  //     const 
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (sessionUser) {
+  //     userId = sessionUser.id
+  //   }
+  // },[sessionUser])
+
   useEffect(() => {
     const errors = [];
     if (date < new Date()) errors.push("Choose a valid date")
@@ -43,7 +56,15 @@ const BookingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+    const newDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+
+    if (sessionUser) {
+      userId = sessionUser.id
+    } else {
+      alert('Please log in or sign up to make a reservation')
+      return;
+    }
+
     const booking = {
       userId,
       spotId,

@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
-import DemoUserPage from '../DemoUser'
+import DemoUserPage from '../DemoUser';
+import SearchBar from '../SearchBar';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -28,10 +29,15 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <div>
+    <>
+      <div>
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
-    </div>
+      </div>
+      <div>
+        <SearchBar />Search:
+      </div>
+    </>
   );
 }
 
