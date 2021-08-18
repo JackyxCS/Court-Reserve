@@ -35,7 +35,7 @@ export const fetchBookings = () => async (dispatch) => {
 };
 
 export const changeBooking = (booking) => async (dispatch) => {
-  const res = await csrfFetch(`/api/bookings/${booking.id}/edit`, {
+  const res = await csrfFetch(`/api/bookings/${booking.id}`, {
     method: 'PUT',
     body: JSON.stringify(booking)
   })

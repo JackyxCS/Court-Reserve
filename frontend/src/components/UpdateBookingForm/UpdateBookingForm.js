@@ -1,72 +1,65 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
-import { states } from '../../geographyData/geographyData'
-import { countries } from '../../geographyData/geographyData'
 import { useDispatch, useSelector } from 'react-redux';
+import { startTimes, endTimes } from '../../timeData/timeData'
 import { fetchBookings, changeBooking } from "../../store/bookings";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
 
 const UpdateBookingForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { spotId } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const { id: userId } = sessionUser
-  const spot = useSelector(state => state.spots[spotId])
+  const { bookingId } = useParams();
+  const booking = useSelector(state => state.bookings[bookingId])
+  const spotId = booking?.spotId
+
+  const [date, setDate] = useState(moment().add(1, 'days')._d)
+  const [startTime, setStartTime] = useState('initial')
+  const [endTime, setEndTime] = useState('final')
+  const [validationErrors, setValidationErrors] = useState([])
+
+  const timeToNum = (startTime, endTime, errors) => {
+    if (startTime !== "initial" && endTime !== "final") {
+      let newStart = parseInt(startTime.split(":")[0], 10)
+      let newEnd = parseInt(endTime.split(":")[0], 10)
+      if (newEnd - newStart >= 3) {
+        errors.push("You may only book a court for up to 2 hours")
+      }
+    }
+  }
 
   useEffect(() => {
     dispatch(fetchBookings())
   }, [dispatch])
 
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState(states[0]);
-  const [country, setCountry] = useState(countries[0]);
-  // const [lat, setLat] = useState();
-  // const [lng, setLng] = useState();
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState(0);
-  const [imageURL, setImageURL] = useState('')
-  const [validationErrors, setValidationErrors] = useState([])
-
-  useEffect(() => {
-    setAddress(spot ? spot.address : '');
-    setCity(spot ? spot.city : '');
-    setState(spot ? spot.state : '');
-    setCountry(spot ? spot.country : '');
-    setName(spot ? spot.name : '');
-    setPrice(spot ? spot.price : '');
-    setImageURL(spot ? spot.Images[0].url : '');
-  }, [spot])
-
-
   useEffect(() => {
     const errors = [];
-    if (name?.length === 0) errors.push("Name field is required")
-    if (address?.length === 0) errors.push("Address field is required")
-    if (city?.length === 0) errors.push("City field is required")
-    if (!state) errors.push("State field is required")
-    if (price === 0) errors.push("Price field is required")
-    if (!imageURL) errors.push("Image field is required")
+    if (date < new Date()) errors.push("Choose a valid date")
+    if (!startTimes.includes(startTime)) errors.push("Start time field is required")
+    if (!endTimes.includes(endTime)) errors.push("End time field is required")
+    if (startTime >= endTime) errors.push("Must be valid time range")
+    timeToNum(startTime, endTime, errors)
     setValidationErrors(errors)
-  }, [name, address, city, state, price, imageURL]);
+  }, [date, startTime, endTime])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const court = {
-      id: spotId,
-      name,
-      address,
-      city,
-      state,
-      country,
-      price,
-      imageURL
+    const newDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+    const booking = {
+      id: bookingId,
+      userId,
+      spotId,
+      date: newDate,
+      startTime,
+      endTime
     }
 
-    let spot = await dispatch(changeBooking(court))
-    console.log(spot)
-    if (spot) {
-      history.push(`/spots/${spot.id}`)
+    let newBooking = await dispatch(changeBooking(booking))
+    if (newBooking) {
+      history.push(`/users/${userId}`)
     }
   }
 
@@ -78,7 +71,51 @@ const UpdateBookingForm = () => {
           <li key={error}>{error}</li>
         ))}
       </ul>
-      
+      <DatePicker
+        placeholderText="Select Date"
+        filterDate={date => {
+          return new Date() < date;
+        }}
+        value={date}
+        selected={date}
+        dateFormat='yyyy-MM-dd'
+        onChange={date => setDate(date)}
+        inline
+      />
+      <label>
+        Start Time
+        <select
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
+        >
+          <option disabled value='initial'> -- start time --
+          </option>
+          {startTimes.map(time => (
+            <option
+              key={time}
+            >
+              {time}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        End Time
+        <select
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
+        >
+          <option disabled value='final'> -- end time --
+          </option>
+          {endTimes.map(time => (
+            <option
+              key={time}
+            >
+              {time}
+            </option>
+          ))}
+        </select>
+      </label>
       <button
         type="submit"
         disabled={validationErrors.length > 0}

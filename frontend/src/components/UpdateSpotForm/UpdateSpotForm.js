@@ -13,8 +13,6 @@ const UpdateSpotForm = () => {
   const { id: userId } = sessionUser
   const spot = useSelector(state => state.spots[spotId])
 
-  console.log(spot)
-
   useEffect(() => {
     dispatch(fetchSpots())
   }, [dispatch])

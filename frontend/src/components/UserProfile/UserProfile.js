@@ -69,6 +69,8 @@ function UserProfile() {
         {userBookings && Object.values(userBookings).map((booking) =>
           <div key={booking?.id}>
             <div>{booking?.Spot?.name}</div>
+            <div>{booking?.date}</div>
+            <div>{booking?.startTime.slice(0, 5)} - {booking?.endTime.slice(0, 5)}</div>
             <div>
               <form onSubmit={(e) => {
                 e.preventDefault();
