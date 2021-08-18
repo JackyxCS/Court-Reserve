@@ -15,7 +15,7 @@ module.exports = {
     return queryInterface.bulkInsert('Bookings', [
       { spotId: 4, userId: 1, startTime: '13:00', endTime: '15:00', date: '2021-10-21' },
       { spotId: 5, userId: 1, startTime: '10:00', endTime: '11:00', date: '2021-10-22' },
-      { spotId: 1, userId: 2, startTime: '8:00', endTime: '10:00', date: '2021-10-23' },
+      { spotId: 1, userId: 2, startTime: '08:00', endTime: '10:00', date: '2021-10-23' },
     ])
   },
 

@@ -3,9 +3,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import { states } from '../../geographyData/geographyData'
 import { countries } from '../../geographyData/geographyData'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSpots, createUpdate } from "../../store/spots";
+import { fetchBookings, changeBooking } from "../../store/bookings";
 
-const UpdateSpotForm = () => {
+const UpdateBookingForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { spotId } = useParams();
@@ -13,10 +13,8 @@ const UpdateSpotForm = () => {
   const { id: userId } = sessionUser
   const spot = useSelector(state => state.spots[spotId])
 
-  console.log(spot)
-
   useEffect(() => {
-    dispatch(fetchSpots())
+    dispatch(fetchBookings())
   }, [dispatch])
 
   const [address, setAddress] = useState('');
@@ -65,7 +63,7 @@ const UpdateSpotForm = () => {
       imageURL
     }
 
-    let spot = await dispatch(createUpdate(court))
+    let spot = await dispatch(changeBooking(court))
     console.log(spot)
     if (spot) {
       history.push(`/spots/${spot.id}`)
@@ -74,87 +72,13 @@ const UpdateSpotForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Update Your Court</h1>
+      <h1>Update Your Booking</h1>
       <ul className="errors">
         {validationErrors.map(error => (
           <li key={error}>{error}</li>
         ))}
       </ul>
-      <label>
-        Court Name
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
-      <label>
-        Address
-        <input
-          type="text"
-          name="address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-      </label>
-      <label>
-        City
-        <input
-          type="text"
-          name="city"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-      </label>
-      <label>
-        State
-        <select
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-        >
-          {states.map(state => (
-            <option
-              key={state}
-            >
-              {state}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Country
-        <select
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-        >
-          {countries.map(country => (
-            <option
-              key={country}
-            >
-              {country}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Hourly Rate
-        <input
-          type="number"
-          name="price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-      </label>
-      <label>
-        Image URL
-        <input
-          type="url"
-          name="picture"
-          value={imageURL}
-          onChange={(e) => setImageURL(e.target.value)}
-        />
-      </label>
+      
       <button
         type="submit"
         disabled={validationErrors.length > 0}
@@ -170,4 +94,4 @@ const UpdateSpotForm = () => {
   )
 }
 
-export default UpdateSpotForm;
+export default UpdateBookingForm;

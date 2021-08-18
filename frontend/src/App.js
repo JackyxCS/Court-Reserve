@@ -10,6 +10,7 @@ import UserProfile from "./components/UserProfile";
 import ListingForm from "./components/ListingForm";
 import SingleSpot from "./components/SingleSpot";
 import UpdateSpotForm from "./components/UpdateSpotForm";
+import UpdateBookingForm from "./components/UpdateBookingForm";
 // import { fetchSpots } from "./store/spots";
 
 function App() {
@@ -40,10 +41,13 @@ function App() {
           <Route exact path="/spots/:spotId/edit">
             <UpdateSpotForm />
           </Route>
-          <Route path="/users/:userId">
+          <Route exact path="/bookings/:bookingId/edit">
+            <UpdateBookingForm />
+          </Route>
+          <Route exact path="/users/:userId">
             <UserProfile />
           </Route>
-          <Route path="/listing">
+          <Route exact path="/listing">
             <ListingForm />
           </Route>
         </Switch>

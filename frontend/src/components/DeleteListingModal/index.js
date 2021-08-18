@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { deleteSpot } from '../../store/spots'
 
-function DeleteModal({ showModal, setShowModal, spotId, userId }) {
+function DeleteListingModal({ showModal, setShowModal, spotId, userId }) {
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -30,4 +30,4 @@ function DeleteModal({ showModal, setShowModal, spotId, userId }) {
   );
 }
 
-export default DeleteModal;
+export default DeleteListingModal;
