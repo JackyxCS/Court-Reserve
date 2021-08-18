@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 // import the thunk creator
 import { searchSpots } from '../../store/search';
 import { useLocation } from 'react-router';
-import MapContainer from '../MapContainer';
+import MapContainer from '../Maps/index';
 
 // import styles from './SpotsContainer.module.css'
 
@@ -30,9 +30,7 @@ const SearchContainer = () => {
           </NavLink>
         )}
       </div>
-      <div>
-        <MapContainer />
-      </div>
+      <div><MapContainer /></div>
     </div>
   )
 }
