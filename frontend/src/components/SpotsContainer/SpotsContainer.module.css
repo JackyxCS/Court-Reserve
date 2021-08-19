@@ -1,0 +1,54 @@
+.spotContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  top: 10vh;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  column-gap: 30px;
+  row-gap: 50px;
+  justify-content: center;
+  /* margin-left: 3vw;
+  margin-right: 3vw; */
+  /* padding-top: 3vh; */
+}
+
+/* .spotCard {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+.imageCard {
+  border-radius: 10px;
+  height: 300px;
+  width: 300px;
+}
+
+.aCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: rgba(0,0,0,0.7);
+}
+
+.nameDiv1 {
+  width: 300px;
+  display: flex;
+  text-decoration: none;
+  font-weight: bold;
+  padding-top: 0.5vh;
+}
+
+.nameDiv2 {
+  width: 300px;
+  display: flex;
+  text-decoration: none;
+  font-size: 0.8rem;
+}

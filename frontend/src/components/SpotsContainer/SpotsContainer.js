@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 // import the thunk creator
 import { fetchSpots } from '../../store/spots';
 
-// import styles from './SpotsContainer.module.css'
+import styles from './SpotsContainer.module.css'
 
 const SpotsContainer = () => {
   // declare variables from hooks
@@ -19,11 +19,17 @@ const SpotsContainer = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles.spotContainer}>
       {!!spots.length && spots.map((spot) =>
-        <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-          <div><img src={spot?.Images[0].url} alt='' />{spot?.name}</div>
-        </NavLink>
+        <div key={spot.id} className={styles.spotCard}>
+          <NavLink className={styles.aCard} key={spot.id} to={`/spots/${spot.id}`}>
+            <img className={styles.imageCard} src={spot?.Images[0].url} alt='' />
+            {/* <div> */}
+              <div className={styles.nameDiv1}>{spot?.name}</div>
+              <div className={styles.nameDiv2}>{spot?.city}, {spot?.state}</div>
+            {/* </div> */}
+          </NavLink>
+        </div>
       )}
     </div>
   )
