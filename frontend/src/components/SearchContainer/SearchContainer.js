@@ -30,7 +30,7 @@ const SearchContainer = () => {
           </NavLink>
         )}
       </div>
-      <div><MapContainer /></div>
+      <div><MapContainer spots={spots}/></div>
     </div>
   )
 }

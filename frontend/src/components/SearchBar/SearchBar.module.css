@@ -1,0 +1,26 @@
+.searchbar {
+  border-radius: 30px;
+  height: 5vh;
+  width: 20vw;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-left: 0.5vw;
+}
+
+.searchform {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.searchinput {
+  border: none;
+  width: 16vw;
+  /* display: flex; */
+  /* flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start; */
+}

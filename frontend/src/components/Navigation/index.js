@@ -21,23 +21,26 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
         <DemoUserPage />
+        <LoginFormModal />
+        <NavLink to="/signup"><button>Sign Up</button></NavLink>
       </>
     );
   }
 
   return (
-    <>
-      <div>
+    <div className="Navbar">
+      <div className="HomeDiv">
         <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
+        {/* {isLoaded && sessionLinks} */}
       </div>
-      <div>
+      <div classname="SearchDiv">
         <SearchBar />
       </div>
-    </>
+      <div className="Login">
+        {isLoaded && sessionLinks}
+      </div>
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { searchSpots } from '../../store/search';
+import styles from './SearchBar.module.css'
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -34,23 +35,25 @@ const SearchBar = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        placeholder="Try 'Houston' or 'Cypress'"
-        type="text"
-        name="search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <button
-        type="submit"
-      // disabled={validationErrors.length > 0}
-      >
-        Search
-      </button>
-    </form>
-
-
+    <div className={styles.searchbar}>
+      <form className={styles.searchform} onSubmit={handleSubmit}>
+        <input
+          className={styles.searchinput}
+          placeholder="Try 'Houston' or 'Cypress'"
+          type="text"
+          name="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button
+          type="submit"
+        // disabled={validationErrors.length > 0}
+        >
+          <i className="i.fa.fa-search.fa-lg"></i>
+          {/* Search */}
+        </button>
+      </form>
+    </div>
   );
 }
 

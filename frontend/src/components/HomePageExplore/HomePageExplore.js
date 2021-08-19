@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom';
+import './HomePageExplore.css'
 
 function HomePageExplore() {
   const history = useHistory()
@@ -7,11 +8,14 @@ function HomePageExplore() {
     e.preventDefault();
     history.push("/spots")
   }
- 
+
   return (
-    <form onSubmit={handleSubmit}>
-      <button type="submit">I'm flexible</button>
-    </form>
+    <div className="Homepage">
+      <form className="FlexibleForm" onSubmit={handleSubmit}>
+        <div>Not sure where to play? Let's explore.</div>
+        <button className="FlexibleButton" type="submit">I'm flexible</button>
+      </form>
+    </div>
   );
 }
 

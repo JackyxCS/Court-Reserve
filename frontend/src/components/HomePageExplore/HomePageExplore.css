@@ -1,0 +1,33 @@
+.Homepage {
+  background: url('../../assets/ryan-searle-qjrjJnFypa0-unsplash.jpg');
+  /* background-size: 100%; */
+  /* background-repeat: no-repeat; */
+  background-position-x: center;
+  background-position-y: center;
+  height: 100vh;
+  width: 100%;
+  color: rgb(255,255,255);
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.FlexibleForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.FlexibleButton {
+  color: #FF385C;
+  height: 60px;
+  width: 11vw;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 25px;
+}
