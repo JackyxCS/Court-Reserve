@@ -12,6 +12,10 @@ const SearchBar = () => {
   const [search, setSearch] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
 
+  const reset = () => {
+    setSearch('')
+  }
+
   useEffect(() => {
     const errors = [];
     if (search.length === 0) errors.push("Must enter a search input")
@@ -34,6 +38,7 @@ const SearchBar = () => {
     } else {
       alert('No locations found')
     }
+    reset()
   }
 
   return (

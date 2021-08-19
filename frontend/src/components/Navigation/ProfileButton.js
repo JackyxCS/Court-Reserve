@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import * as sessionActions from '../../store/session';
+import './Navigation.css'
 
 function ProfileButton({ user }) {
   const history = useHistory();
@@ -38,20 +39,22 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className="ProfileButton" onClick={openMenu}>
+        <i className="fas fa-user-circle fa-lg" />
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={visitProfile}>My Profile</button>
-          </li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div className="dropdown-menu">
+          <ul className="profile-dropdown">
+            <li>{user.username}</li>
+            <li>{user.email}</li>
+            <li>
+              <button onClick={visitProfile}>My Profile</button>
+            </li>
+            <li>
+              <button onClick={logout}>Log Out</button>
+            </li>
+          </ul>
+        </div>
       )}
     </>
   );

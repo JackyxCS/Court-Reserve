@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink to="/listing">List your court</NavLink>
+        <NavLink to="/listing" className="CourtListing">List Your Court</NavLink>
         <ProfileButton user={sessionUser} />
       </>
     );
@@ -23,7 +23,7 @@ function Navigation({ isLoaded }) {
       <>
         <DemoUserPage />
         <LoginFormModal />
-        <NavLink to="/signup"><button>Sign Up</button></NavLink>
+        <NavLink to="/signup"><button className="demobutton">Sign Up</button></NavLink>
       </>
     );
   }
@@ -31,7 +31,7 @@ function Navigation({ isLoaded }) {
   return (
     <div className="Navbar">
       <div className="HomeDiv">
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/" className="HomeNav">COURT RESERVE</NavLink>
         {/* {isLoaded && sessionLinks} */}
       </div>
       <div className="SearchDiv">

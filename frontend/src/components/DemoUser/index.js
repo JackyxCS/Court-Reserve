@@ -20,7 +20,7 @@ function DemoUserPage() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <button type="submit">Demo User</button>
+      <button className="demobutton" type="submit">Demo User</button>
     </form>
   );
 }

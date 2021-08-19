@@ -17,9 +17,112 @@
 
 .Login {
   display: flex;
+  align-items: center;
 }
 
 .SearchDiv {
   display: flex;
   justify-content: space-between;
+}
+
+.HomeDiv {
+  /* background-color: #FF385C; */
+  color: black;
+  position: absolute;
+  /* top: 4vh; */
+  left: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.HomeNav {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  /* position: absolute; */
+  /* top: 4vh; */
+  left: 3vw;
+  /* background-color: #FF385C; */
+  color: #FF385C;
+  border: none;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.Login {
+  /* background-color: black; */
+  position: absolute;
+  /* top: 4vh; */
+  right: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.CourtListing {
+  margin-right: 1vw;
+  text-decoration: none;
+  font-size: 14px;
+  color: rgba(0,0,0,0.7);
+}
+
+.ProfileButton {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  /* position: absolute;
+  top: 10vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.profile-dropdown > li {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  list-style-type: none;
+  position: relative;
+  margin-top: 1vh;
+}
+
+.profile-dropdown > li > button {
+  height: 3vh;
+  border-radius: 15px;
+  border: none;
+  background-color: #FF385C;
+  color: white;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: lightgray;
+  top: 5vh;
+  padding: 5px 10px;
+  border-radius: 15px;
+  height: 20vh;
+  width: 10vw;
+  border: none;
+  opacity: 0.9;
+}
+
+.Login .demobutton {
+  height: 5vh;
+  width: 4vw;
+  margin-right: 1vw;
+  cursor: pointer;
+  border: none;
+  color: rgba(0,0,0,0.7);
+  text-decoration: none;
+  background-color: none;
+  background: none;
 }

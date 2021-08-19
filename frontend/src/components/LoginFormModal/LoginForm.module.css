@@ -1,18 +1,15 @@
-.RegisterForm {
+.LoginForm {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 20vh;
-  position: absolute;
   flex-direction: column;
-  border: 1px solid rgba(0,0,0,0.6);
-  height: 55vh;
-  width: 18vw;
-  left: 5vw;
-  border-radius: 15px;
+  justify-content: center;
+  height: 50vh;
+  width: 20vw;
+  background-color: white;
+  align-items: center;
+  border-radius: 10%;
 }
 
-.RegisterForm input {
+.LoginForm input {
   height: 6vh;
   width: 15vw;
   border-radius: 10px;
@@ -21,8 +18,7 @@
   padding-left: 0.5vw;
 }
 
-
-.RegisterForm button {
+.LoginForm button {
   outline: none;
   color: white;
   cursor: pointer;
@@ -34,14 +30,14 @@
   width: 15vw;
 }
 
-.RegisterForm label {
-  margin-bottom: 4vh;
+.LoginForm label {
+  margin-bottom: 7vh;
   color: rgba(0,0,0,0.8);
 }
 
-.RegisterForm > ul > li {
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
-}
+/* .LoginForm > div {
+  border-bottom: 1px solid rgba(0,0,0,0.7);
+  margin-bottom: 3vh;
+  height: 1vh;
+  background-color: rgba(0,0,0,0.7);
+} */

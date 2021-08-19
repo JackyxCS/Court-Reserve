@@ -27,7 +27,7 @@
 }
 
 .searchinput:focus {
-  outline: none;
+  outline: none !important;
 }
 
 .searchbutton {
