@@ -34,7 +34,7 @@ function Navigation({ isLoaded }) {
         <NavLink exact to="/">Home</NavLink>
         {/* {isLoaded && sessionLinks} */}
       </div>
-      <div classname="SearchDiv">
+      <div className="SearchDiv">
         <SearchBar />
       </div>
       <div className="Login">

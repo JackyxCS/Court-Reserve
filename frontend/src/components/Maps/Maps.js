@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-import { useDispatch, useSelector } from 'react-redux';
-import { searchSpots } from '../../store/search';
-import { useLocation } from 'react-router';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { searchSpots } from '../../store/search';
+// import { useLocation } from 'react-router';
 
 const containerStyle = {
   width: '500px',
@@ -28,39 +28,23 @@ const Maps = ({ apiKey, spots }) => { //how about passing spots here
     // libraries,
   });
 
-  // const dispatch = useDispatch();
-  // const spots = useSelector(state => Object.values(state.search));
-  // const location = useLocation();
+  const newLatArray = spots?.map(spot => +spot?.lat)
+  const newLngArray = spots?.map(spot => +spot?.lng)
+  const newLat = newLatArray?.reduce((a, b) => a + b, 0) / newLatArray?.length
+  const newLng = newLngArray?.reduce((a, b) => a + b, 0) / newLngArray?.length
+  center.lat = +newLat;
+  center.lng = +newLng;
 
-  console.log(spots)
-
-  // useEffect(() => {
-  //   dispatch(searchSpots((location.state.search)))
-  // }, [dispatch, location]);
-
-  // const spots = useSelector(state => Object.values(state.search))
-
-  const newLatArray = spots?.map(spot => +spot.lat)
-  const newLngArray = spots?.map(spot => +spot.lng)
-  const newLat = newLatArray?.reduce((a, b) => a + b) / newLatArray?.length
-  const newLng = newLngArray?.reduce((a, b) => a + b) / newLngArray?.length
-  center.lat = newLat;
-  center.lng = newLng;
-  console.log(newLatArray)
-  console.log(newLat)
-
-  console.log(spots)
-  console.log(spots[0].name)
+  // console.log(newLat, newLng)
 
   const markersArr = []
-  spots.forEach(spot => {
+  spots?.forEach(spot => {
     const obj = {}
-    obj['name'] = spot.name
-    obj['lat'] = spot.lat
-    obj['lng'] = spot.lng
+    obj['name'] = spot?.name
+    obj['lat'] = spot?.lat
+    obj['lng'] = spot?.lng
     markersArr.push(obj)
   })
-  console.log(markersArr)
 
   return (
     <>

@@ -12,7 +12,6 @@ import SingleSpot from "./components/SingleSpot";
 import UpdateSpotForm from "./components/UpdateSpotForm";
 import UpdateBookingForm from "./components/UpdateBookingForm";
 import SearchContainer from "./components/SearchContainer";
-// import MapContainer from "./components/MapContainer/MapContainer";
 
 function App() {
   const dispatch = useDispatch();

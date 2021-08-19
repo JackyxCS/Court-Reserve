@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { searchSpots } from '../../store/search';
 import styles from './SearchBar.module.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -46,10 +48,13 @@ const SearchBar = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
         <button
+          className={styles.searchbutton}
           type="submit"
         // disabled={validationErrors.length > 0}
         >
-          <i className="i.fa.fa-search.fa-lg"></i>
+          {/* <i className="i.fa.fa-search.fa-lg"></i> */}
+          <FontAwesomeIcon icon={faSearch}
+            style={{ transform: [{ rotateX: '180deg' }] }} />
           {/* Search */}
         </button>
       </form>
