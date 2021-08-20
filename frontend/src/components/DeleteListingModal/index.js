@@ -3,6 +3,7 @@ import { Modal } from '../../context/Modal';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { deleteSpot } from '../../store/spots'
+import styles from './DeleteListingModal.module.css'
 
 function DeleteListingModal({ showListingModal, setShowListingModal, spotId, userId }) {
   const dispatch = useDispatch()
@@ -19,11 +20,15 @@ function DeleteListingModal({ showListingModal, setShowListingModal, spotId, use
     <>
       {showListingModal && (
         <Modal onClose={() => setShowListingModal(false)}>
-          <h2>Are you sure?</h2>
-          <form onSubmit={handleSubmit}>
-            <button type="submit">Confirm</button>
-          </form>
-          <button onClick={() => setShowListingModal(false)}>Cancel</button>
+          <div className={styles.profileDeleteDivs}>
+            <label>Are you sure?</label>
+            <form onSubmit={handleSubmit}>
+              <button type="submit"
+                className={styles.deleteListingButton}>Confirm</button>
+            </form>
+            <button onClick={() => setShowListingModal(false)}
+              className={styles.deleteListingButton}>Cancel</button>
+          </div>
         </Modal>
       )}
     </>

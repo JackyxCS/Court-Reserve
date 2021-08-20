@@ -37,6 +37,9 @@ const Maps = ({ apiKey, spots }) => { //how about passing spots here
         newArray.push(obj)
       })
       setMarkersArr(newArray)
+    } else {
+      setLat(0)
+      setLng(0)
     }
   }, [spots])
 

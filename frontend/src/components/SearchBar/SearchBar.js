@@ -37,15 +37,11 @@ const SearchBar = () => {
     if (foundCourts.length > 0) {
       setSearch('')
       setPlaceholder(`Try 'Houston' or 'Cypress'`)
-      // reset()
       history.push({ pathname: `/spots/search`, state: { search: payload.search } })
     } else {
-      // reset()
       setSearch('')
-      setPlaceholder('No locations found')
-      // alert('No locations found')
+      setPlaceholder(`No locations found, try 'Houston' or 'Cypress'`)
     }
-    // reset()
   }
 
   return (

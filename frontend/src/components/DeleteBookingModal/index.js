@@ -20,20 +20,22 @@ function DeleteBookingModal({ showBookingModal, setShowBookingModal, userId, boo
     <div className={styles.deleteDiv}>
       {showBookingModal && (
         <Modal onClose={() => setShowBookingModal(false)}>
-          <label>Are you sure?</label>
-          <form className={styles.deleteBooking} onSubmit={handleSubmit}>
+          <div className={styles.profileDeleteDivs}>
+            <label>Are you sure?</label>
+            <form className={styles.deleteBooking} onSubmit={handleSubmit}>
+              <button
+                type="submit"
+                className={styles.deleteBookingButton}
+              >Confirm</button>
+            </form>
             <button
-              type="submit"
+              onClick={() => setShowBookingModal(false)}
               className={styles.deleteBookingButton}
-            >Confirm</button>
-          </form>
-          <button
-            onClick={() => setShowBookingModal(false)}
-            className={styles.deleteBookingButton}
-          >Cancel</button>
+            >Cancel</button>
+          </div>
         </Modal>
-  )
-}
+      )
+      }
     </div >
   );
 }

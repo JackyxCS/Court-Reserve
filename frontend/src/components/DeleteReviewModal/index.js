@@ -3,6 +3,7 @@ import { Modal } from '../../context/Modal';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { deleteReview } from '../../store/reviews'
+import styles from './DeleteReviewModal.module.css'
 
 function DeleteReviewModal({ showReviewModal, setShowReviewModal, userId, reviewId }) {
   const dispatch = useDispatch()
@@ -19,11 +20,15 @@ function DeleteReviewModal({ showReviewModal, setShowReviewModal, userId, review
     <>
       {showReviewModal && (
         <Modal onClose={() => setShowReviewModal(false)}>
-          <h2>Are you sure?</h2>
-          <form onSubmit={handleSubmit}>
-            <button type="submit">Confirm</button>
-          </form>
-          <button onClick={() => setShowReviewModal(false)}>Cancel</button>
+          <div className={styles.profileDeleteDivs}>
+            <label>Are you sure?</label>
+            <form onSubmit={handleSubmit}>
+              <button type="submit"
+                className={styles.deleteReviewButton}>Confirm</button>
+            </form>
+            <button onClick={() => setShowReviewModal(false)}
+              className={styles.deleteReviewButton}>Cancel</button>
+          </div>
         </Modal>
       )}
     </>
