@@ -16,6 +16,9 @@ function DeleteListingModal({ showListingModal, setShowListingModal, spotId, use
     e.preventDefault();
     setShowListingModal(false)
     await dispatch(deleteSpot(spotId))
+    await dispatch(fetchSpots());
+    await dispatch(fetchBookings());
+    await dispatch(fetchReviews());
     history.push(`/users/${userId}`)
   }
 

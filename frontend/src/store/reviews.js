@@ -25,6 +25,7 @@ const removeReview = (reviewId) => ({
 export const fetchReviews = () => async (dispatch) => {
   const res = await fetch('/api/reviews');
   const reviews = await res.json();
+  console.log('reviews', reviews);
   dispatch(setReviews(reviews))
 }
 
@@ -59,7 +60,7 @@ const initialState = {};
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_REVIEWS: {
-      const newState = { ...state }
+      const newState = {}
       action.reviews.forEach(review => {
         newState[review.id] = review
       })
