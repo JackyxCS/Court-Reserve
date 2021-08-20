@@ -8,6 +8,7 @@ import { fetchSpots } from '../../store/spots';
 import BookingForm from '../BookingForm';
 import SpotReviews from '../SpotReviews';
 import ReviewForm from '../ReviewForm';
+import MapContainer from '../Maps';
 import styles from './SingleSpot.module.css'
 
 const SingleSpot = () => {
@@ -28,12 +29,13 @@ const SingleSpot = () => {
   return (
     <div className={styles.singleSpot}>
       <div className={styles.nameSpot}>
-        {singleSpot[0] && singleSpot[0].name}
+        {singleSpot[0] && singleSpot[0]?.name}
       </div>
-      <img className={styles.spotImage} src={singleSpot[0]?.Images[0].url} alt='' />
+      <img className={styles.spotImage} src={singleSpot[0]?.Images[0]?.url} alt='' />
       <SpotReviews spotId={spotId} />
       {sessionUser ? <ReviewForm /> : ''}
       <BookingForm />
+      <MapContainer spots={singleSpot} />
     </div>
   )
 }

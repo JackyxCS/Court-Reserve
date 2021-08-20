@@ -3,6 +3,9 @@ import { Modal } from '../../context/Modal';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { deleteSpot } from '../../store/spots'
+import { fetchSpots } from '../../store/spots';
+import { fetchBookings } from '../../store/bookings';
+import { fetchReviews } from '../../store/reviews';
 import styles from './DeleteListingModal.module.css'
 
 function DeleteListingModal({ showListingModal, setShowListingModal, spotId, userId }) {

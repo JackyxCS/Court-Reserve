@@ -22,8 +22,8 @@ const UpdateSpotForm = () => {
   const [city, setCity] = useState('');
   const [state, setState] = useState(states[0]);
   const [country, setCountry] = useState(countries[0]);
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [imageURL, setImageURL] = useState('')

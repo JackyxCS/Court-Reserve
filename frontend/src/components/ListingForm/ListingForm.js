@@ -14,8 +14,8 @@ const ListingForm = () => {
   const [city, setCity] = useState('');
   const [state, setState] = useState('initial');
   const [country, setCountry] = useState('initial');
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [imageURL, setImageURL] = useState('')
@@ -127,7 +127,7 @@ const ListingForm = () => {
 
       <input
         placeholder="Latitude"
-        type="number"
+        type="text"
         name="lat"
         value={lat}
         onChange={(e) => setLat(e.target.value)}
@@ -136,7 +136,7 @@ const ListingForm = () => {
 
       <input
         placeholder="Longitude"
-        type="number"
+        type="text"
         name="lng"
         value={lng}
         onChange={(e) => setLng(e.target.value)}

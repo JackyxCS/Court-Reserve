@@ -12,6 +12,7 @@ function DeleteReviewModal({ showReviewModal, setShowReviewModal, userId, review
   const handleSubmit = async (e) => {
     e.preventDefault();
     setShowReviewModal(false)
+    console.log('userID', userId, 'reviewID', reviewId)
     await dispatch(deleteReview(reviewId))
     history.push(`/users/${userId}`)
   }

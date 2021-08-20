@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { requireAuth } = require('../../utils/auth');
-const { Spot, Image } = require('../../db/models')
+const { Spot, Image, Booking, Review } = require('../../db/models');
 
 const router = express.Router();
 
@@ -29,7 +29,8 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
   const newCourt = await Spot.create({ userId, name, address, city, state, country, lat, lng, price });
   const { id: spotId } = newCourt
   await Image.create({ spotId, url })
-  return res.json(newCourt)
+  const newSpot = await Spot.findByPk(spotId, { include: [Image] })
+  return res.json(newSpot)
 }))
 
 // POST /api/spots/search
@@ -57,10 +58,14 @@ router.delete('/:spotId(\\d+)', requireAuth, asyncHandler(async (req, res) => {
   const spotId = parseInt(req.params.spotId, 10)
   // const { id: userId } = req.user
   const spot = await Spot.findOne({ where: { id: spotId } })
-  const image = await Image.findOne({ where: { spotId: spotId } })
-  await image.destroy()
+  // const image = await Image.findAll({ where: { spotId: spotId } })
+  // const booking = await Booking.findAll({ where: { spotId: spotId } })
+  // const review = await Review.findAll({where: {spotId: spotId}})
+  // await image.destroy()
+  // await booking.destroy()
+  // await review.destroy()
   await spot.destroy()
-  return res.json({ spot })
+  return res.json(spot)
 }))
 
 module.exports = router;
