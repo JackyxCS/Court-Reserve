@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 // import the thunk creator
 import { fetchSpots } from '../../store/spots';
-
 import styles from './SpotsContainer.module.css'
 
 const SpotsContainer = () => {

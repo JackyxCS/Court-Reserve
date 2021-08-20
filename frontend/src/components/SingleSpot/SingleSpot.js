@@ -8,8 +8,7 @@ import { fetchSpots } from '../../store/spots';
 import BookingForm from '../BookingForm';
 import SpotReviews from '../SpotReviews';
 import ReviewForm from '../ReviewForm';
-
-// import styles from './SingleSpot.module.css'
+import styles from './SingleSpot.module.css'
 
 const SingleSpot = () => {
   // declare variables from hooks
@@ -24,12 +23,17 @@ const SingleSpot = () => {
     dispatch(fetchSpots());
   }, [dispatch]);
 
+  console.log(singleSpot)
+
   return (
-    <div>
-      {singleSpot[0] && singleSpot[0].name}
-      <BookingForm />
+    <div className={styles.singleSpot}>
+      <div className={styles.nameSpot}>
+        {singleSpot[0] && singleSpot[0].name}
+      </div>
+      <img className={styles.spotImage} src={singleSpot[0]?.Images[0].url} alt='' />
       <SpotReviews spotId={spotId} />
       {sessionUser ? <ReviewForm /> : ''}
+      <BookingForm />
     </div>
   )
 }

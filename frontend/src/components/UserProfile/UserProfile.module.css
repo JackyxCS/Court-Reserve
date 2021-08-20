@@ -1,0 +1,46 @@
+.profileContainer {
+  display: flex;
+  position: absolute;
+  top: 10vh;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5vh;
+}
+
+.smallDiv {
+  width: 40vw;
+  height: 20vh;
+  overflow-y: scroll;
+  margin-top: 2vh;
+}
+
+.buttonsDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1vh;
+  align-items: center;
+}
+
+.threeButtons {
+  display: flex;
+  margin-right: 1vw;
+}
+
+.threeButtons > div {
+  margin-right: 0.5vw;
+}
+
+.buttons {
+  outline: none;
+  color: white;
+  cursor: pointer;
+  background: none;
+  background-color: #FF385C;
+  border: none;
+  border-radius: 15px;
+  height: 3vh;
+  width: 4vw;
+}

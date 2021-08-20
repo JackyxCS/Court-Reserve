@@ -7,8 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { searchSpots } from '../../store/search';
 import { useLocation } from 'react-router';
 import MapContainer from '../Maps/index';
-
-// import styles from './SpotsContainer.module.css'
+import styles from './SearchContainer.module.css'
 
 const SearchContainer = () => {
   // declare variables from hooks
@@ -22,16 +21,23 @@ const SearchContainer = () => {
   }, [dispatch, location]);
 
   return (
-    <div>
-      <div>
+    <div className={styles.searchContainer}>
+      <div className={styles.spotContainer}>
+        <div className={styles.courtDiv}>Find your court and start playing!</div>
         {!!spots.length && spots.map((spot) =>
-          <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-            <div><img src={spot?.Images[0].url} alt='' />{spot?.name}</div>
-          </NavLink>
+          <div key={spot.id} className={styles.spotCard}>
+            <NavLink key={spot.id} className={styles.aCard} to={`/spots/${spot.id}`}>
+              <img className={styles.imageCard} src={spot?.Images[0].url} alt='' />
+              <div className={styles.nameDiv}>
+                <div className={styles.nameDiv1}>{spot?.name}</div>
+                <div className={styles.nameDiv2}>{spot?.city}, {spot?.state}</div>
+              </div>
+            </NavLink>
+          </div>
         )}
       </div>
-      <div><MapContainer spots={spots}/></div>
-    </div>
+      <div className={styles.mapsContainer}><MapContainer spots={spots} /></div>
+    </div >
   )
 }
 

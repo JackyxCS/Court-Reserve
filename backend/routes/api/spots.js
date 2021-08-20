@@ -24,9 +24,9 @@ router.get('/:spotId(\\d+)', asyncHandler(async (req, res) => {
 
 // POST /api/spots
 router.post('/', requireAuth, asyncHandler(async (req, res) => {
-  const { name, address, city, state, country, price, imageURL: url } = req.body
+  const { name, address, city, state, country, lat, lng, price, imageURL: url } = req.body
   const { id: userId } = req.user
-  const newCourt = await Spot.create({ userId, name, address, city, state, country, price });
+  const newCourt = await Spot.create({ userId, name, address, city, state, country, lat, lng, price });
   const { id: spotId } = newCourt
   await Image.create({ spotId, url })
   return res.json(newCourt)

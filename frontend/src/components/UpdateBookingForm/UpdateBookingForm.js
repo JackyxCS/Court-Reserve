@@ -6,6 +6,7 @@ import { fetchBookings, changeBooking } from "../../store/bookings";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
+import styles from './UpdateBooking.module.css'
 
 const UpdateBookingForm = () => {
   const dispatch = useDispatch();
@@ -64,13 +65,13 @@ const UpdateBookingForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Update Your Booking</h1>
-      <ul className="errors">
+    <form className={styles.updateBooking} onSubmit={handleSubmit}>
+      <label className={styles.updateBookingLabel}>Update Your Booking</label>
+      {/* <ul className="errors">
         {validationErrors.map(error => (
           <li key={error}>{error}</li>
         ))}
-      </ul>
+      </ul> */}
       <DatePicker
         placeholderText="Select Date"
         filterDate={date => {
@@ -82,48 +83,46 @@ const UpdateBookingForm = () => {
         onChange={date => setDate(date)}
         inline
       />
-      <label>
-        Start Time
-        <select
-          value={startTime}
-          onChange={(e) => setStartTime(e.target.value)}
-        >
-          <option disabled value='initial'> -- start time --
+      <select
+        value={startTime}
+        onChange={(e) => setStartTime(e.target.value)}
+        className={styles.updateBookingSelect}
+      >
+        <option disabled value='initial'> -- start time --
+        </option>
+        {startTimes.map(time => (
+          <option
+            key={time}
+          >
+            {time}
           </option>
-          {startTimes.map(time => (
-            <option
-              key={time}
-            >
-              {time}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        End Time
-        <select
-          value={endTime}
-          onChange={(e) => setEndTime(e.target.value)}
-        >
-          <option disabled value='final'> -- end time --
+        ))}
+      </select>
+      <select
+        value={endTime}
+        onChange={(e) => setEndTime(e.target.value)}
+        className={styles.updateBookingSelect}
+      >
+        <option disabled value='final'> -- end time --
+        </option>
+        {endTimes.map(time => (
+          <option
+            key={time}
+          >
+            {time}
           </option>
-          {endTimes.map(time => (
-            <option
-              key={time}
-            >
-              {time}
-            </option>
-          ))}
-        </select>
-      </label>
+        ))}
+      </select>
       <button
         type="submit"
         disabled={validationErrors.length > 0}
+        className={styles.updateBookingButton}
       >
         Update
       </button>
       <button
         onClick={(e) => history.push(`/users/${userId}`)}
+        className={styles.updateBookingButton}
       >
         Cancel
       </button>

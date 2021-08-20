@@ -9,12 +9,6 @@
   flex-direction: row;
 }
 
-/* .HomeDiv {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-
 .Login {
   display: flex;
   align-items: center;
@@ -26,10 +20,8 @@
 }
 
 .HomeDiv {
-  /* background-color: #FF385C; */
   color: black;
   position: absolute;
-  /* top: 4vh; */
   left: 3vw;
   display: flex;
   align-items: center;
@@ -40,10 +32,7 @@
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: flex-start;
-  /* position: absolute; */
-  /* top: 4vh; */
   left: 3vw;
-  /* background-color: #FF385C; */
   color: #FF385C;
   border: none;
   text-decoration: none;
@@ -51,9 +40,7 @@
 }
 
 .Login {
-  /* background-color: black; */
   position: absolute;
-  /* top: 4vh; */
   right: 3vw;
   display: flex;
   align-items: center;
@@ -76,8 +63,6 @@
 }
 
 .profile-dropdown {
-  /* position: absolute;
-  top: 10vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -113,6 +98,7 @@
   width: 10vw;
   border: none;
   opacity: 0.9;
+  z-index: 1;
 }
 
 .Login .demobutton {

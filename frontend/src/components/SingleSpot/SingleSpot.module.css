@@ -1,0 +1,18 @@
+.singleSpot {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 10vh;
+  width: 100%;
+  z-index: -1;
+  align-items: center;
+  margin-top: 2vh;
+}
+
+.spotImage {
+  border-radius: 15px;
+  height: 50vh;
+  width: 50vh;
+  margin-top: 2vh;
+}

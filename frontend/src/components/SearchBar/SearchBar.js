@@ -11,10 +11,11 @@ const SearchBar = () => {
   const history = useHistory();
   const [search, setSearch] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
+  const [placeholder, setPlaceholder] = useState(`Try 'Houston' or 'Cypress'`)
 
-  const reset = () => {
-    setSearch('')
-  }
+  // const reset = () => {
+  //   // setSearch('')
+  // }
 
   useEffect(() => {
     const errors = [];
@@ -34,11 +35,17 @@ const SearchBar = () => {
 
     let foundCourts = await dispatch(searchSpots(search))
     if (foundCourts.length > 0) {
+      setSearch('')
+      setPlaceholder(`Try 'Houston' or 'Cypress'`)
+      // reset()
       history.push({ pathname: `/spots/search`, state: { search: payload.search } })
     } else {
-      alert('No locations found')
+      // reset()
+      setSearch('')
+      setPlaceholder('No locations found')
+      // alert('No locations found')
     }
-    reset()
+    // reset()
   }
 
   return (
@@ -46,11 +53,12 @@ const SearchBar = () => {
       <form className={styles.searchform} onSubmit={handleSubmit}>
         <input
           className={styles.searchinput}
-          placeholder="Try 'Houston' or 'Cypress'"
+          placeholder={placeholder}
           type="text"
           name="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          autoComplete='off'
         />
         <button
           className={styles.searchbutton}

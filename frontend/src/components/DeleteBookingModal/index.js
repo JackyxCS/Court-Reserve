@@ -3,6 +3,7 @@ import { Modal } from '../../context/Modal';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { deleteBooking } from '../../store/bookings'
+import styles from './DeleteBookingModal.module.css';
 
 function DeleteBookingModal({ showBookingModal, setShowBookingModal, userId, bookingId }) {
   const dispatch = useDispatch()
@@ -16,17 +17,24 @@ function DeleteBookingModal({ showBookingModal, setShowBookingModal, userId, boo
   }
 
   return (
-    <>
+    <div className={styles.deleteDiv}>
       {showBookingModal && (
         <Modal onClose={() => setShowBookingModal(false)}>
-          <h2>Are you sure?</h2>
-          <form onSubmit={handleSubmit}>
-            <button type="submit">Confirm</button>
+          <label>Are you sure?</label>
+          <form className={styles.deleteBooking} onSubmit={handleSubmit}>
+            <button
+              type="submit"
+              className={styles.deleteBookingButton}
+            >Confirm</button>
           </form>
-          <button onClick={() => setShowBookingModal(false)}>Cancel</button>
+          <button
+            onClick={() => setShowBookingModal(false)}
+            className={styles.deleteBookingButton}
+          >Cancel</button>
         </Modal>
-      )}
-    </>
+  )
+}
+    </div >
   );
 }
 

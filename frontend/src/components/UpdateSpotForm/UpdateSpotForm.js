@@ -4,6 +4,7 @@ import { states } from '../../geographyData/geographyData'
 import { countries } from '../../geographyData/geographyData'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSpots, createUpdate } from "../../store/spots";
+import './UpdateSpotForm.css';
 
 const UpdateSpotForm = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,8 @@ const UpdateSpotForm = () => {
   const [city, setCity] = useState('');
   const [state, setState] = useState(states[0]);
   const [country, setCountry] = useState(countries[0]);
-  // const [lat, setLat] = useState();
-  // const [lng, setLng] = useState();
+  const [lat, setLat] = useState();
+  const [lng, setLng] = useState();
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [imageURL, setImageURL] = useState('')
@@ -33,6 +34,8 @@ const UpdateSpotForm = () => {
     setCity(spot ? spot.city : '');
     setState(spot ? spot.state : '');
     setCountry(spot ? spot.country : '');
+    setLat(spot ? spot.lat : '');
+    setLng(spot ? spot.lng : '');
     setName(spot ? spot.name : '');
     setPrice(spot ? spot.price : '');
     setImageURL(spot ? spot.Images[0].url : '');
@@ -64,95 +67,108 @@ const UpdateSpotForm = () => {
     }
 
     let spot = await dispatch(createUpdate(court))
-    console.log(spot)
     if (spot) {
       history.push(`/spots/${spot.id}`)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Update Your Court</h1>
-      <ul className="errors">
+    <form className="updateListing" onSubmit={handleSubmit}>
+      <label>Update Your Court</label>
+      {/* <ul className="errors">
         {validationErrors.map(error => (
           <li key={error}>{error}</li>
         ))}
-      </ul>
-      <label>
-        Court Name
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
-      <label>
-        Address
-        <input
-          type="text"
-          name="address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-      </label>
-      <label>
-        City
-        <input
-          type="text"
-          name="city"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-      </label>
-      <label>
-        State
-        <select
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-        >
-          {states.map(state => (
-            <option
-              key={state}
-            >
-              {state}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Country
-        <select
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-        >
-          {countries.map(country => (
-            <option
-              key={country}
-            >
-              {country}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Hourly Rate
-        <input
-          type="number"
-          name="price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-      </label>
-      <label>
-        Image URL
-        <input
-          type="url"
-          name="picture"
-          value={imageURL}
-          onChange={(e) => setImageURL(e.target.value)}
-        />
-      </label>
+      </ul> */}
+      <input
+        placeholder="Court Name"
+        type="text"
+        name="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
+      <input
+        placeholder="Court Name"
+        type="text"
+        name="address"
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+        required
+      />
+      <input
+        placeholder="Court Name"
+        type="text"
+        name="city"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        required
+      />
+      <select
+        value={state}
+        onChange={(e) => setState(e.target.value)}
+        required
+      >
+        <option disabled value='initial'> -- State --
+        </option>
+        {states.map(state => (
+          <option
+            key={state}
+          >
+            {state}
+          </option>
+        ))}
+      </select>
+      <select
+        value={country}
+        onChange={(e) => setCountry(e.target.value)}
+        required
+      >
+        <option disabled value='initial'> -- Country --
+        </option>
+        {countries.map(country => (
+          <option
+            key={country}
+          >
+            {country}
+          </option>
+        ))}
+      </select>
+
+      <input
+        placeholder="Latitude"
+        type="number"
+        name="lat"
+        value={lat}
+        onChange={(e) => setLat(e.target.value)}
+        required
+      />
+
+      <input
+        placeholder="Longitude"
+        type="number"
+        name="lng"
+        value={lng}
+        onChange={(e) => setLng(e.target.value)}
+        required
+      />
+
+      <input
+        placeholder="Hourly Rate"
+        type="number"
+        name="price"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        required
+      />
+      <input
+        placeholder="Image URL"
+        type="url"
+        name="picture"
+        value={imageURL}
+        onChange={(e) => setImageURL(e.target.value)}
+        required
+      />
       <button
         type="submit"
         disabled={validationErrors.length > 0}

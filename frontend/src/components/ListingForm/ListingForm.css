@@ -1,0 +1,48 @@
+.listingForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10vh;
+  position: absolute;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,0.6);
+  height: 75vh;
+  width: 18vw;
+  left: 5vw;
+  border-radius: 15px;
+}
+
+.listingForm input {
+  height: 4vh;
+  width: 15vw;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.4);
+  margin-bottom: 2vh;
+  padding-left: 0.5vw;
+}
+
+.listingForm select {
+  height: 4vh;
+  width: 15vw;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.4);
+  margin-bottom: 2vh;
+  padding-left: 0.5vw;
+}
+
+.listingForm button {
+  outline: none;
+  color: white;
+  cursor: pointer;
+  background: none;
+  background-color: #FF385C;
+  border: none;
+  border-radius: 15px;
+  height: 4vh;
+  width: 15vw;
+}
+
+.listingForm label {
+  margin-bottom: 4vh;
+  color: rgba(0,0,0,0.8);
+}
