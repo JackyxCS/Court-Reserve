@@ -1,0 +1,63 @@
+/* .demobutton {
+  display: flex;
+  justify-content: center;
+} */
+
+.aboutDiv > .demobutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50vh;
+  width: 20vw;
+  background-color: white;
+  align-items: center;
+  border-radius: 10%;
+}
+
+.icons button {
+  outline: none;
+  color: white;
+  cursor: pointer;
+  background: none;
+  background-color: #FF385C;
+  border: none;
+  border-radius: 15px;
+  height: 6vh;
+  width: 15vw;
+  margin-bottom: 2vh;
+}
+
+.icons > div {
+  color: rgba(0,0,0,0.8);
+  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+  display: flex;
+  justify-content: flex-start;
+  width: 15vw;
+  margin-bottom: 4vh;
+}
+
+.icons > a {
+  color: none;
+  background-color: none;
+  text-decoration: none;
+}
+
+.icons > a:link {
+  text-decoration: none;
+}
+
+.icons > a:visited {
+  text-decoration:none;
+}
+
+.icons > * {
+  color: none;
+  text-decoration: none;
+}

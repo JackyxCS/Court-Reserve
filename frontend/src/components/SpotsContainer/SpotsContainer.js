@@ -18,19 +18,20 @@ const SpotsContainer = () => {
   }, [dispatch]);
 
   return (
-    <div className={styles.spotContainer}>
-      {!!spots.length && spots.map((spot) =>
-        <div key={spot.id} className={styles.spotCard}>
-          <NavLink className={styles.aCard} key={spot.id} to={`/spots/${spot.id}`}>
-            <img className={styles.imageCard} src={spot?.Images[0].url} alt='' />
-            {/* <div> */}
+      <div className={styles.spotContainer}>
+        {!!spots.length && spots.map((spot) =>
+          <div key={spot.id} className={styles.spotCard}>
+            <NavLink className={styles.aCard} key={spot.id} to={`/spots/${spot.id}`}>
+              <img className={styles.imageCard} src={spot?.Images[0].url} alt='' />
+              {/* <div> */}
               <div className={styles.nameDiv1}>{spot?.name}</div>
+              <div className={styles.priceDiv}>${spot?.price} per hour</div>
               <div className={styles.nameDiv2}>{spot?.city}, {spot?.state}</div>
-            {/* </div> */}
-          </NavLink>
-        </div>
-      )}
-    </div>
+              {/* </div> */}
+            </NavLink>
+          </div>
+        )}
+      </div>
   )
 }
 

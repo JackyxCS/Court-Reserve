@@ -30,6 +30,7 @@ const SearchContainer = () => {
               <img className={styles.imageCard} src={spot?.Images[0].url} alt='' />
               <div className={styles.nameDiv}>
                 <div className={styles.nameDiv1}>{spot?.name}</div>
+                <div className={styles.priceDiv}>${spot?.price} per hour</div>
                 <div className={styles.nameDiv2}>{spot?.city}, {spot?.state}</div>
               </div>
             </NavLink>

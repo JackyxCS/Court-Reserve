@@ -83,3 +83,11 @@
   text-decoration: none;
   font-size: 0.8rem;
 }
+
+.priceDiv {
+  width: 300px;
+  display: flex;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-bottom: 0.2vh;
+}

@@ -6,6 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import DemoUserPage from '../DemoUser';
 import SearchBar from '../SearchBar';
 import './Navigation.css';
+import AboutMeModal from '../AboutMeModal';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -38,8 +39,12 @@ function Navigation({ isLoaded }) {
         <SearchBar />
       </div>
       <div className="Login">
+        <AboutMeModal />
         {isLoaded && sessionLinks}
       </div>
+      {/* <div className="AboutMeDiv">
+        <AboutMeModal />
+      </div> */}
     </div>
   );
 }
