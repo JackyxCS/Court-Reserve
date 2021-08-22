@@ -50,7 +50,7 @@ const SearchContainer = () => {
         {!!spots.length && spots.map((spot) =>
           <div key={spot.id} className={styles.spotCard}>
             <NavLink key={spot.id} className={styles.aCard} to={`/spots/${spot.id}`}>
-              <img className={styles.imageCard} src={spot?.Images[4].url} alt='' />
+              <img className={styles.imageCard} src={spot?.Images[0].url} alt='' />
               <div className={styles.nameDiv}>
                 <div className={styles.infoDiv}>
                   <div className={styles.nameDiv1}>{spot?.name}</div>
@@ -60,10 +60,10 @@ const SearchContainer = () => {
                 </div>
                 <div className={styles.ratingDiv}>
                   {/* <div className={styles.starDiv}> */}
-                    <FontAwesomeIcon icon={faStar} size='1x' color='#FF385C' />
+                  <FontAwesomeIcon icon={faStar} size='1x' color='#FF385C' />
                   {/* </div>
                   <div className={styles.ratingtextDiv}> */}
-                    {(!!spot.Reviews.length) ? ((((arr.filter(ele => ele.id === spot.id))[0].sum) / spot.Reviews.length).toFixed(2)) : '0'} ({spot.Reviews.length} Reviews)
+                  {(!!spot.Reviews.length) ? ((((arr.filter(ele => ele.id === spot.id))[0].sum) / spot.Reviews.length).toFixed(2)) : '0'} ({spot.Reviews.length} Reviews)
                   {/* </div> */}
                 </div>
               </div>
