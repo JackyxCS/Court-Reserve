@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink to="/listing" className="CourtListing">List Your Court</NavLink>
+        <NavLink to="/listing" className="CourtListing"><button className="demobutton">List Your Court</button></NavLink>
         <ProfileButton user={sessionUser} />
       </>
     );

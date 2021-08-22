@@ -1,8 +1,8 @@
 .spotContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  top: 10vh;
-  position: absolute;
+  /* top: 10vh;
+  position: absolute; */
   width: 100%;
   height: 100%;
   z-index: -1;
@@ -67,4 +67,23 @@
 .numberSpots {
   top: 10vh;
   position: absolute;
+}
+
+.spotsDescription {
+  /* top: 10vh;
+  position: absolute; */
+  padding-left: 3vw;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  /* z-index: -1; */
+  padding-bottom: 2vh;
+}
+
+.spotsPage {
+  position: absolute;
+  top: 10vh;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }

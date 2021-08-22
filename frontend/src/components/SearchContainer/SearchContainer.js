@@ -14,6 +14,10 @@ const SearchContainer = () => {
   const dispatch = useDispatch();
   const spots = useSelector(state => Object.values(state.search));
   const location = useLocation();
+  // const style = {
+  //   height: "300px",
+  //   width: "300px",
+  // }
 
   // use a 'react' hook and cause a side effect
   useEffect(() => {
@@ -37,7 +41,7 @@ const SearchContainer = () => {
           </div>
         )}
       </div>
-      <div className={styles.mapsContainer}><MapContainer spots={spots} /></div>
+      <div className={styles.mapsContainer}><MapContainer spots={spots}/></div>
     </div >
   )
 }

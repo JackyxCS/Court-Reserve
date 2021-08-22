@@ -33,9 +33,6 @@
 }
 
 .mapsContainer {
-  /* display: grid; */
-  /* position: absolute;
-  top: 10vh; */
   right: 0px;
   position: absolute;
   width: 55%;

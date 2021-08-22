@@ -45,7 +45,7 @@ const ReviewForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Leave a Review</h1>
+      <div>Leave a Review</div>
       {/* <ul className="errors">
         {validationErrors.map(error => (
           <li key={error}>{error}</li>

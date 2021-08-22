@@ -81,7 +81,7 @@ const BookingForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Create a Booking</h1>
+      <div>Create a Booking</div>
       <ul className="errors">
         {validationErrors.map(error => (
           <li key={error}>{error}</li>
@@ -98,8 +98,6 @@ const BookingForm = () => {
         onChange={date => setDate(date)}
         inline
       />
-      <label>
-        Start Time
         <select
           value={startTime}
           onChange={(e) => setStartTime(e.target.value)}
@@ -114,9 +112,6 @@ const BookingForm = () => {
             </option>
           ))}
         </select>
-      </label>
-      <label>
-        End Time
         <select
           value={endTime}
           onChange={(e) => setEndTime(e.target.value)}
@@ -131,7 +126,6 @@ const BookingForm = () => {
             </option>
           ))}
         </select>
-      </label>
       <button
         type="submit"
         disabled={validationErrors.length > 0}

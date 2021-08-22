@@ -18,6 +18,8 @@ const SpotsContainer = () => {
   }, [dispatch]);
 
   return (
+    <div className={styles.spotsPage}>
+      <div className={styles.spotsDescription}>Viewing all {spots?.length} courts. Pick one and get started!</div>
       <div className={styles.spotContainer}>
         {!!spots.length && spots.map((spot) =>
           <div key={spot.id} className={styles.spotCard}>
@@ -32,6 +34,7 @@ const SpotsContainer = () => {
           </div>
         )}
       </div>
+    </div>
   )
 }
 

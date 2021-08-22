@@ -71,6 +71,7 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  /* left: 1vw; */
 }
 
 .profile-dropdown {
@@ -123,3 +124,9 @@
   background-color: none;
   background: none;
 }
+
+/* .CourtListingDiv {
+  display: flex;
+  align-items: center;
+  height: 100%;
+} */

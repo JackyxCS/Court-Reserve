@@ -18,7 +18,11 @@ const ListingForm = () => {
   const [lng, setLng] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [imageURL, setImageURL] = useState('')
+  const [imageURL1, setImageURL1] = useState('')
+  const [imageURL2, setImageURL2] = useState('')
+  const [imageURL3, setImageURL3] = useState('')
+  const [imageURL4, setImageURL4] = useState('')
+  const [imageURL5, setImageURL5] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
 
   useEffect(() => {
@@ -30,9 +34,13 @@ const ListingForm = () => {
     if (!lat) errors.push("Lat field is required")
     if (!lng) errors.push("Lng field is required")
     if (price === 0) errors.push("Price field is required")
-    if (!imageURL) errors.push("Image field is required")
+    if (!imageURL1) errors.push("Image field is required")
+    if (!imageURL2) errors.push("Image field is required")
+    if (!imageURL3) errors.push("Image field is required")
+    if (!imageURL4) errors.push("Image field is required")
+    if (!imageURL5) errors.push("Image field is required")
     setValidationErrors(errors)
-  }, [name, address, city, state, price, imageURL, lat, lng]);
+  }, [name, address, city, state, price, imageURL1, imageURL2, imageURL3, imageURL4, imageURL5, lat, lng]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,8 +56,14 @@ const ListingForm = () => {
       lat,
       lng,
       price,
-      imageURL
+      imageURL1,
+      imageURL2,
+      imageURL3,
+      imageURL4,
+      imageURL5,
     }
+
+    console.log(court)
 
     let spot = await dispatch(postSpot(court))
     if (spot) {
@@ -153,11 +167,47 @@ const ListingForm = () => {
       />
 
       <input
-        placeholder="Image URL"
+        placeholder="Image URL1"
         type="url"
         name="picture"
-        value={imageURL}
-        onChange={(e) => setImageURL(e.target.value)}
+        value={imageURL1}
+        onChange={(e) => setImageURL1(e.target.value)}
+        required
+      />
+
+      <input
+        placeholder="Image URL2"
+        type="url"
+        name="picture"
+        value={imageURL2}
+        onChange={(e) => setImageURL2(e.target.value)}
+        required
+      />
+
+      <input
+        placeholder="Image URL3"
+        type="url"
+        name="picture"
+        value={imageURL3}
+        onChange={(e) => setImageURL3(e.target.value)}
+        required
+      />
+
+      <input
+        placeholder="Image URL4"
+        type="url"
+        name="picture"
+        value={imageURL4}
+        onChange={(e) => setImageURL4(e.target.value)}
+        required
+      />
+
+      <input
+        placeholder="Image URL5"
+        type="url"
+        name="picture"
+        value={imageURL5}
+        onChange={(e) => setImageURL5(e.target.value)}
         required
       />
 

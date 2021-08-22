@@ -9,6 +9,7 @@ import BookingForm from '../BookingForm';
 import SpotReviews from '../SpotReviews';
 import ReviewForm from '../ReviewForm';
 import MapContainer from '../Maps';
+// import Maps from '../Maps/Maps';
 import styles from './SingleSpot.module.css'
 
 const SingleSpot = () => {
@@ -24,18 +25,48 @@ const SingleSpot = () => {
     dispatch(fetchSpots());
   }, [dispatch]);
 
-  console.log(singleSpot)
+  // console.log(singleSpot)
 
   return (
     <div className={styles.singleSpot}>
       <div className={styles.nameSpot}>
-        {singleSpot[0] && singleSpot[0]?.name}
+        <h2 className={styles.courtName}>{singleSpot[0] && singleSpot[0]?.name}</h2>
+        <p>{singleSpot[0] && singleSpot[0]?.city}, {singleSpot[0] && singleSpot[0]?.state}</p>
       </div>
-      <img className={styles.spotImage} src={singleSpot[0]?.Images[0]?.url} alt='' />
-      <SpotReviews spotId={spotId} />
-      {sessionUser ? <ReviewForm /> : ''}
-      <BookingForm />
-      <MapContainer spots={singleSpot} />
+      <div className={styles.twoImageContainers}>
+        <img className={styles.spotImage0} src={singleSpot[0]?.Images[0]?.url} alt='' />
+        <div className={styles.gridImages}>
+          <div>
+            <img className={styles.spotImage1} src={singleSpot[0]?.Images[1]?.url} alt='' />
+          </div>
+          <div>
+            <img className={styles.spotImage2} src={singleSpot[0]?.Images[2]?.url} alt='' />
+          </div>
+          <div>
+            <img className={styles.spotImage3} src={singleSpot[0]?.Images[3]?.url} alt='' />
+          </div>
+          <div>
+            <img className={styles.spotImage4} src={singleSpot[0]?.Images[4]?.url} alt='' />
+          </div>
+        </div>
+      </div>
+      <div className={styles.courtsAvailable}>Courts available for reservation</div>
+      <div className={styles.midContainer}>
+        <div>
+          <div>
+            <SpotReviews spotId={spotId} />
+          </div>
+          <div>
+            {sessionUser ? <ReviewForm /> : ''}
+          </div>
+        </div>
+        <div>
+          <BookingForm />
+        </div>
+      </div>
+      <div className={styles.singleSpotContainer}>
+        <MapContainer spots={singleSpot} />
+      </div>
     </div>
   )
 }

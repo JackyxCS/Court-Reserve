@@ -5,9 +5,9 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 const AboutMeContainer = () => {
   return (
     <div className="icons">
-      <div>I love tennis. I hate waiting around to play it. This project was born from
+      <div>Hi, I'm Jacky. Thanks for visiting Court Reserve. <br /> <br /> About me: I love tennis. I hate waiting around to play it. This project was born from
         how I imagined a more efficient public facilities system to operate: through the adoption of a reservation-based bookings
-        system that would ensure everyone could play exactly when and where they wanted. Happy hitting!
+        system that would allow everyone to play exactly when and where they wanted. Happy hitting!
       </div>
       <a href='https://github.com/JackyxCS' target="_blank" rel="noreferrer">
         <button>

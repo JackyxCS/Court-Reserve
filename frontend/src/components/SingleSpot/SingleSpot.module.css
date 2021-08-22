@@ -1,4 +1,4 @@
-.singleSpot {
+  .singleSpot {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -10,9 +10,106 @@
   margin-top: 2vh;
 }
 
-.spotImage {
+/* .spotImage {
   border-radius: 15px;
-  height: 50vh;
-  width: 50vh;
+  height: 50.5vh;
+  width: 60vh;
   margin-top: 2vh;
+  margin-right: 0.4vw;
+} */
+
+.singleSpotContainer {
+  /* right: 0px; */
+  /* position: absolute; */
+  width: 200px;
+  height: 200px;
+  display: flex;
+  /* overflow: hidden; */
+}
+
+.twoImageContainers {
+  display: flex;
+  align-items: flex-start;
+}
+
+.gridImages {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  row-gap: 0.5vh;
+}
+
+.gridImages img {
+  width: 25vh;
+  height: 25vh;
+  display: block;
+}
+
+.spotImage0 {
+  border-radius: 15px 0px 0px 15px;
+  height: 50.5vh;
+  width: 60vh;
+  /* margin-top: 2vh; */
+  margin-right: 0.8vh;
+}
+
+.spotImage1 {
+  /* border-radius: 15px; */
+  height: 50.5vh;
+  width: 60vh;
+  /* margin-top: 2vh; */
+  margin-right: 0.8vh;
+}
+
+.spotImage2 {
+  border-radius: 0px 15px 0px 0px;
+  height: 50.5vh;
+  width: 60vh;
+  /* margin-top: 2vh; */
+  margin-right: 0.8vh;
+}
+
+.spotImage3 {
+  /* border-radius: 15px; */
+  height: 50.5vh;
+  width: 60vh;
+  /* margin-top: 2vh; */
+  margin-right: 0.8vh;
+}
+
+.spotImage4 {
+  border-radius: 0px 0px 15px 0px;
+  height: 50.5vh;
+  width: 60vh;
+  /* margin-top: 2vh; */
+  margin-right: 0.8vh;
+}
+
+.nameSpot {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 2vh;
+  width: 112.6vh;
+}
+
+.courtName {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 0.5vh;
+}
+
+.courtsAvailable {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 2vh;
+  width: 112.6vh;
+  margin-bottom: 2vh;
+}
+
+.midContainer {
+  display: flex;
+  flex-direction: row;
+  width: 112.6vh;
+  justify-content: space-between;
 }

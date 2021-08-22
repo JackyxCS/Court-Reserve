@@ -48,7 +48,7 @@ const UpdateBookingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+    const newDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     const booking = {
       id: bookingId,
       userId,

@@ -1,5 +1,5 @@
 .searchbar {
-  border-radius: 30px;
+  border-radius: 35px;
   height: 5vh;
   width: 20vw;
   border: 1px solid rgba(0,0,0,0.3);
@@ -41,6 +41,6 @@
   border-radius: 50%;
   height: 4vh;
   width: 4vh;
-  margin-left: 1vw;
+  margin-left: 1.2vw;
   margin-top: 0.1vh;
 }
