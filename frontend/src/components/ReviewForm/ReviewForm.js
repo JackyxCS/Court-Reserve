@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { postReview } from '../../store/reviews';
+import { fetchReviews, postReview } from '../../store/reviews';
+import styles from './ReviewForm.module.css'
 
 const ReviewForm = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const ReviewForm = () => {
   useEffect(() => {
     const errors = [];
     if (review.length === 0) errors.push("Please leave a review")
-    if (!rating) errors.push("Please choose a valid rating")
+    if (!['1','2','3','4','5'].includes(rating)) errors.push("Please choose a valid rating")
     setValidationErrors(errors)
   }, [review, rating])
 
@@ -39,13 +40,14 @@ const ReviewForm = () => {
     let newReview = await dispatch(postReview(payload))
     if (newReview) {
       reset()
+      dispatch(fetchReviews());
       history.push(`/spots/${spotId}`)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>Leave a Review</div>
+    <form className={styles.reviewForm} onSubmit={handleSubmit}>
+      <div className={styles.reviewText}>Leave a Review</div>
       {/* <ul className="errors">
         {validationErrors.map(error => (
           <li key={error}>{error}</li>
@@ -54,6 +56,7 @@ const ReviewForm = () => {
       <select
         value={rating}
         onChange={(e) => setRating(e.target.value)}
+        className={styles.selectComponents}
       >
         <option disabled value='initial'>Rating</option>
         <option value={5}>5</option>
@@ -63,14 +66,16 @@ const ReviewForm = () => {
         <option value={1}>1</option>
       </select>
       <textarea
-        placeholder="Tell us about your experience"
+        placeholder="Tell everyone about your experience"
         name="review"
         value={review}
         onChange={(e) => setReview(e.target.value)}
+        className={styles.textareaComponents}
       />
       <button
         type="submit"
         disabled={validationErrors.length > 0}
+        className={styles.reviewFormButton}
       >
         Submit Review
       </button>

@@ -31,7 +31,6 @@ const removeSpot = (spotId) => ({
 export const fetchSpots = () => async (dispatch) => {
   const res = await fetch('/api/spots');
   const spots = await res.json();
-  console.log('spots', spots)
   dispatch(setSpots(spots))
 };
 
@@ -55,8 +54,6 @@ export const postSpot = (court) => async (dispatch) => {
     // headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(court)
   })
-
-  console.log('res', res);
 
   if (res.ok) {
     const listing = await res.json();

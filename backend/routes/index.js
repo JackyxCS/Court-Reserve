@@ -8,6 +8,15 @@ router.use('/api', apiRouter);
 // Serve React build files in production
 if (process.env.NODE_ENV === 'production') {
   const path = require('path');
+
+  // redirect to https if not working
+  router.all('*', (req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      res.redirect(`https://${req.hostname}${req.url}`)
+    } else {
+      next();
+    }
+  });
   // Serve the frontend's index.html file at the root route
   router.get('/', (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());

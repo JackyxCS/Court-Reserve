@@ -1,3 +1,12 @@
-.review {
-  font-size: 2rem;
+.singleReview {
+  margin-bottom: 4vh;
+}
+
+.usernametag {
+  font-weight: bold;
+}
+
+.reviewText {
+  margin-bottom: 2vh;
+  font-size: 1rem;
 }

@@ -19,11 +19,11 @@ const SpotReviews = ({ spotId }) => {
 
   return (
     <>
-      <div>Reviews</div>
+      <div className={styles.reviewText}>Reviews</div>
       <div>
-        {!!spotReviews.length && spotReviews.map((review) =>
-          <div key={review?.id}>
-            <p>{review?.User?.username}</p>
+        {!!spotReviews.length && spotReviews?.map((review) =>
+          <div className={styles.singleReview} key={review?.id}>
+            <p className={styles.usernametag}>{review?.User?.username}</p>
             <p><FontAwesomeIcon icon={faStar} size='1x' color='#FF385C' /> {review?.rating}</p>
             <p>{review?.review}</p>
           </div>

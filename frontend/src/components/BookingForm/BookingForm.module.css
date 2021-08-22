@@ -1,0 +1,47 @@
+.reviewText {
+  margin-bottom: 2vh;
+  display: flex;
+  justify-content: center;
+}
+
+.warningText {
+  margin-bottom: 2vh;
+  display: flex;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
+  max-width: 112.6vh;
+}
+
+.selectComponents {
+  margin-top: 1vh;
+  border-radius: 10px;
+  height: 3vh;
+}
+
+.BookingFormButton {
+  height: 4vh;
+  border-radius: 20px;
+  border: none;
+  background-color: #FF385C;
+  color: white;
+  cursor: pointer;
+  margin-top: 1vh;
+}
+
+.priceDiv {
+  margin-top: 1vh;
+  border-radius: 10px;
+  height: 3vh;
+  font-size: 0.8rem;
+  padding-left: 0.5vw;
+  border: 1px solid rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

@@ -8,13 +8,13 @@ import DatePicker from "react-datepicker";
 import { postBooking } from '../../store/bookings'
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
+import styles from './BookingForm.module.css'
 
-const BookingForm = () => {
+const BookingForm = ({ price }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector(state => state?.session?.user);
   let userId;
-  // const { id: userId } = sessionUser
   const { spotId } = useParams();
 
   const [date, setDate] = useState(moment().add(1, 'days')._d)
@@ -31,18 +31,6 @@ const BookingForm = () => {
       }
     }
   }
-
-  // const checkUserId = () => {
-  //   if (sessionUser) {
-  //     const 
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   if (sessionUser) {
-  //     userId = sessionUser.id
-  //   }
-  // },[sessionUser])
 
   useEffect(() => {
     const errors = [];
@@ -80,13 +68,14 @@ const BookingForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>Create a Booking</div>
-      <ul className="errors">
+    <form className={styles.reviewForm} onSubmit={handleSubmit}>
+      <div className={styles.reviewText}>Create a Booking</div>
+      <div className={styles.warningText}>You may only book a court for up to 2 hours</div>
+      {/* <ul className="errors">
         {validationErrors.map(error => (
           <li key={error}>{error}</li>
         ))}
-      </ul>
+      </ul> */}
       <DatePicker
         placeholderText="Select Date"
         filterDate={date => {
@@ -98,37 +87,41 @@ const BookingForm = () => {
         onChange={date => setDate(date)}
         inline
       />
-        <select
-          value={startTime}
-          onChange={(e) => setStartTime(e.target.value)}
-        >
-          <option disabled value='initial'> -- start time --
+      <select
+        value={startTime}
+        onChange={(e) => setStartTime(e.target.value)}
+        className={styles.selectComponents}
+      >
+        <option disabled value='initial'> -- start time --
+        </option>
+        {startTimes.map(time => (
+          <option
+            key={time}
+          >
+            {time}
           </option>
-          {startTimes.map(time => (
-            <option
-              key={time}
-            >
-              {time}
-            </option>
-          ))}
-        </select>
-        <select
-          value={endTime}
-          onChange={(e) => setEndTime(e.target.value)}
-        >
-          <option disabled value='final'> -- end time --
+        ))}
+      </select>
+      <select
+        value={endTime}
+        onChange={(e) => setEndTime(e.target.value)}
+        className={styles.selectComponents}
+      >
+        <option disabled value='final'> -- end time --
+        </option>
+        {endTimes.map(time => (
+          <option
+            key={time}
+          >
+            {time}
           </option>
-          {endTimes.map(time => (
-            <option
-              key={time}
-            >
-              {time}
-            </option>
-          ))}
-        </select>
+        ))}
+      </select>
+      <div className={styles.priceDiv}>Price: ${(startTimes.includes(startTime) && endTimes.includes(endTime) && (endTime > startTime)) ? (price * (endTime.slice(0,2) - startTime.slice(0,2))) : '0'}</div>
       <button
         type="submit"
         disabled={validationErrors.length > 0}
+        className={styles.BookingFormButton}
       >
         Book
       </button>

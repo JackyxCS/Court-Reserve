@@ -7,6 +7,8 @@ import { NavLink } from 'react-router-dom';
 import { searchSpots } from '../../store/search';
 import { useLocation } from 'react-router';
 import MapContainer from '../Maps/index';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import styles from './SearchContainer.module.css'
 
 const SearchContainer = () => {
@@ -14,10 +16,27 @@ const SearchContainer = () => {
   const dispatch = useDispatch();
   const spots = useSelector(state => Object.values(state.search));
   const location = useLocation();
-  // const style = {
-  //   height: "300px",
-  //   width: "300px",
-  // }
+
+  let arr = []
+
+  const totalRating = () => {
+    // let averageRating;
+    for (let i = 0; i < spots.length; i++) {
+      let obj = {};
+      let spot = spots[i]
+      let num = 0;
+      for (let j = 0; j < spot.Reviews.length; j++) {
+        num += spot.Reviews[j].rating
+      }
+      obj['id'] = spots[i].id
+      obj['sum'] = num
+      arr.push(obj)
+      num = 0;
+    }
+    return;
+  }
+
+  totalRating();
 
   // use a 'react' hook and cause a side effect
   useEffect(() => {
@@ -31,17 +50,28 @@ const SearchContainer = () => {
         {!!spots.length && spots.map((spot) =>
           <div key={spot.id} className={styles.spotCard}>
             <NavLink key={spot.id} className={styles.aCard} to={`/spots/${spot.id}`}>
-              <img className={styles.imageCard} src={spot?.Images[0].url} alt='' />
+              <img className={styles.imageCard} src={spot?.Images[4].url} alt='' />
               <div className={styles.nameDiv}>
-                <div className={styles.nameDiv1}>{spot?.name}</div>
-                <div className={styles.priceDiv}>${spot?.price} per hour</div>
-                <div className={styles.nameDiv2}>{spot?.city}, {spot?.state}</div>
+                <div className={styles.infoDiv}>
+                  <div className={styles.nameDiv1}>{spot?.name}</div>
+                  <div className={styles.priceDiv}>${spot?.price} per hour</div>
+                  <div className={styles.nameDiv2}>{spot?.city}, {spot?.state}</div>
+                  {/* <div>{spot.Reviews.length}</div> */}
+                </div>
+                <div className={styles.ratingDiv}>
+                  {/* <div className={styles.starDiv}> */}
+                    <FontAwesomeIcon icon={faStar} size='1x' color='#FF385C' />
+                  {/* </div>
+                  <div className={styles.ratingtextDiv}> */}
+                    {(!!spot.Reviews.length) ? ((((arr.filter(ele => ele.id === spot.id))[0].sum) / spot.Reviews.length).toFixed(2)) : '0'} ({spot.Reviews.length} Reviews)
+                  {/* </div> */}
+                </div>
               </div>
             </NavLink>
           </div>
         )}
       </div>
-      <div className={styles.mapsContainer}><MapContainer spots={spots}/></div>
+      <div className={styles.mapsContainer}><MapContainer spots={spots} /></div>
     </div >
   )
 }

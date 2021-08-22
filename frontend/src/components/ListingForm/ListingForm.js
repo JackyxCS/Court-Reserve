@@ -63,8 +63,6 @@ const ListingForm = () => {
       imageURL5,
     }
 
-    console.log(court)
-
     let spot = await dispatch(postSpot(court))
     if (spot) {
       history.push(`/spots/${spot.id}`)

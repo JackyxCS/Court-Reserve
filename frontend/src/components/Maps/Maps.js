@@ -14,7 +14,7 @@ const options = {
   zoomControl: true,
 }
 
-const Maps = ({ apiKey, spots }) => { //how about passing spots here
+const Maps = ({ apiKey, spots }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey,
@@ -42,32 +42,6 @@ const Maps = ({ apiKey, spots }) => { //how about passing spots here
       setLng(0)
     }
   }, [spots])
-
-  // console.log(markersArr)
-
-  // const newLatArray = spots?.map(spot => +spot?.lat)
-  // const newLngArray = spots?.map(spot => +spot?.lng)
-  // const newLat = newLatArray?.reduce((a, b) => a + b, 0) / newLatArray?.length
-  // const newLng = newLngArray?.reduce((a, b) => a + b, 0) / newLngArray?.length
-
-  // const newLat = +spots[0]?.lat
-  // const newLng = +spots[0]?.lng
-  // center.lat = +newLat;
-  // center.lng = +newLng;
-
-  // const markersArr = []
-  // if (!spots?.length) {
-  //   center.lat = 0;
-  //   center.lng = 0;
-  // } else {
-  //   spots?.forEach(spot => {
-  //     const obj = {}
-  //     obj['name'] = spot?.name
-  //     obj['lat'] = spot?.lat
-  //     obj['lng'] = spot?.lng
-  //     markersArr.push(obj)
-  //   })
-  // }
 
   return (
     <>

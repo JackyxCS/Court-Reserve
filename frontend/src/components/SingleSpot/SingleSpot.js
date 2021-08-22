@@ -19,13 +19,12 @@ const SingleSpot = () => {
   const spots = useSelector(state => Object.values(state.spots))
   const sessionUser = useSelector(state => state.session.user);
   const singleSpot = spots.filter(spot => Number(spot.id) === Number(spotId))
+  const price = singleSpot[0]?.price;
 
   // use a 'react' hook and cause a side effect
   useEffect(() => {
     dispatch(fetchSpots());
   }, [dispatch]);
-
-  // console.log(singleSpot)
 
   return (
     <div className={styles.singleSpot}>
@@ -53,15 +52,15 @@ const SingleSpot = () => {
       <div className={styles.courtsAvailable}>Courts available for reservation</div>
       <div className={styles.midContainer}>
         <div>
-          <div>
+          <div className={styles.reviewForm}>
             <SpotReviews spotId={spotId} />
           </div>
-          <div>
+          <div className={styles.reviewForm}>
             {sessionUser ? <ReviewForm /> : ''}
           </div>
         </div>
         <div>
-          <BookingForm />
+          <BookingForm price={price} />
         </div>
       </div>
       <div className={styles.singleSpotContainer}>

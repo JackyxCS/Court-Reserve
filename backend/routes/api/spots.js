@@ -28,7 +28,6 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
   const { id: userId } = req.user
   const newCourt = await Spot.create({ userId, name, address, city, state, country, lat, lng, price });
   const { id: spotId } = newCourt
-  console.log('imageURL', imageURL1, imageURL2)
   await Image.create({ spotId, url: imageURL1 })
   await Image.create({ spotId, url: imageURL2 })
   await Image.create({ spotId, url: imageURL3 })
@@ -41,7 +40,7 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
 // POST /api/spots/search
 router.post('/search', asyncHandler(async (req, res) => {
   const { searchInput: search } = req.body
-  const foundCourts = await Spot.findAll({ where: { city: search }, include: Image })
+  const foundCourts = await Spot.findAll({ where: { city: search }, include: [Review, Image] })
   return res.json(foundCourts)
 }))
 
