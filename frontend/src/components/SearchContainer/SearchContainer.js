@@ -50,7 +50,7 @@ const SearchContainer = () => {
         {!!spots.length && spots.map((spot) =>
           <div key={spot.id} className={styles.spotCard}>
             <NavLink key={spot.id} className={styles.aCard} to={`/spots/${spot.id}`}>
-              <img className={styles.imageCard} src={spot?.Images[0].url} alt='' />
+              <img className={styles.imageCard} src={spot?.Images[4].url} alt='' />
               <div className={styles.nameDiv}>
                 <div className={styles.infoDiv}>
                   <div className={styles.nameDiv1}>{spot?.name}</div>
