@@ -211,7 +211,7 @@ const ListingForm = () => {
 
       <button
         type="submit"
-        disabled={validationErrors.length > 0}
+        // disabled={validationErrors.length > 0}
       >
         List!
       </button>

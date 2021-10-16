@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^12.8.3",
     "js-cookie": "^3.0.0",
     "moment": "^2.29.1",
+    "nvm": "0.0.4",
     "react": "^17.0.2",
     "react-datepicker": "^4.2.0",
     "react-dom": "^17.0.2",

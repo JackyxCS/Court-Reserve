@@ -27,7 +27,7 @@ const BookingForm = ({ price }) => {
       let newStart = parseInt(startTime.split(":")[0], 10)
       let newEnd = parseInt(endTime.split(":")[0], 10)
       if (newEnd - newStart >= 3) {
-        errors.push("You may only book a court for up to 2 hours")
+        errors.push("Max time is 2 hours")
       }
     }
   }
@@ -37,7 +37,7 @@ const BookingForm = ({ price }) => {
     if (date < new Date()) errors.push("Choose a valid date")
     if (!startTimes.includes(startTime)) errors.push("Start time field is required")
     if (!endTimes.includes(endTime)) errors.push("End time field is required")
-    if (startTime >= endTime) errors.push("Must be valid time range")
+    if (startTime >= endTime) errors.push("Invalid time range")
     timeToNum(startTime, endTime, errors)
     setValidationErrors(errors)
   }, [date, startTime, endTime])
@@ -45,6 +45,8 @@ const BookingForm = ({ price }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+
+    if (validationErrors > 0) return;
 
     if (sessionUser) {
       userId = sessionUser.id
@@ -70,12 +72,12 @@ const BookingForm = ({ price }) => {
   return (
     <form className={styles.reviewForm} onSubmit={handleSubmit}>
       <div className={styles.reviewText}>Create a Booking</div>
-      <div className={styles.warningText}>You may only book a court for up to 2 hours</div>
-      {/* <ul className="errors">
+      {/* <div className={styles.warningText}>You may only book a court for up to 2 hours</div> */}
+      <ul className={styles.errors}>
         {validationErrors.map(error => (
           <li key={error}>{error}</li>
         ))}
-      </ul> */}
+      </ul>
       <DatePicker
         placeholderText="Select Date"
         filterDate={date => {
@@ -86,11 +88,14 @@ const BookingForm = ({ price }) => {
         dateFormat='yyyy-MM-dd'
         onChange={date => setDate(date)}
         inline
+        required
+        className={styles.calendar}
       />
       <select
         value={startTime}
         onChange={(e) => setStartTime(e.target.value)}
         className={styles.selectComponents}
+        required
       >
         <option disabled value='initial'> -- start time --
         </option>
@@ -106,6 +111,7 @@ const BookingForm = ({ price }) => {
         value={endTime}
         onChange={(e) => setEndTime(e.target.value)}
         className={styles.selectComponents}
+        required
       >
         <option disabled value='final'> -- end time --
         </option>
@@ -117,7 +123,7 @@ const BookingForm = ({ price }) => {
           </option>
         ))}
       </select>
-      <div className={styles.priceDiv}>Price: ${(startTimes.includes(startTime) && endTimes.includes(endTime) && (endTime > startTime)) ? (price * (endTime.slice(0,2) - startTime.slice(0,2))) : '0'}</div>
+      <div className={styles.priceDiv}>Price: ${(startTimes.includes(startTime) && endTimes.includes(endTime) && (endTime > startTime)) ? (price * (endTime.slice(0, 2) - startTime.slice(0, 2))) : '0'}</div>
       <button
         type="submit"
         disabled={validationErrors.length > 0}
