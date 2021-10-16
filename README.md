@@ -4,6 +4,8 @@ One of the worst feelings in the world- making plans to play tennis with friends
 Live Link: [Court Reserve](https://aa-court-reserve.herokuapp.com/)
 
 ## Index
+[Development](#Development)
+
 [Features](#Features)
 
 [Technologies](#Technologies)
@@ -15,6 +17,13 @@ Live Link: [Court Reserve](https://aa-court-reserve.herokuapp.com/)
 [Court Reserve in Action](#Court-Reserve-in-Action)
 
 [What's Next](#What's-Next)
+
+## Development
+
+* In order to start the development environment, clone the repository at: https://github.com/JackyxCS/Court-Reserve
+  * run "npm install" within the frontend and backend folders to install the necessary dependencies.
+  * run "npm start" in the backend folder.
+  * run "npm start" in the frontend folder.
 
 ## Features
 
