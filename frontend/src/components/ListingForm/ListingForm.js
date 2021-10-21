@@ -138,7 +138,7 @@ const ListingForm = () => {
       </select>
 
       <input
-        placeholder="Latitude"
+        placeholder="Latitude (enter a number)"
         type="text"
         name="lat"
         value={lat}
@@ -147,7 +147,7 @@ const ListingForm = () => {
       />
 
       <input
-        placeholder="Longitude"
+        placeholder="Longitude (enter a number)"
         type="text"
         name="lng"
         value={lng}

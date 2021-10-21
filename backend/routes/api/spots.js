@@ -40,7 +40,10 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
 // POST /api/spots/search
 router.post('/search', asyncHandler(async (req, res) => {
   const { searchInput: search } = req.body
-  const foundCourts = await Spot.findAll({ where: { city: search }, include: [Review, Image] })
+  let firstLetter = search[0].toUpperCase()
+  let remaining = search.slice(1)
+  let searchParam = firstLetter + remaining
+  const foundCourts = await Spot.findAll({ where: { city: searchParam }, include: [Review, Image] })
   return res.json(foundCourts)
 }))
 
